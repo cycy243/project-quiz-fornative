@@ -7,6 +7,10 @@
     Shell.FlyoutBehavior="Disabled"
     Title="Quiz.ForNative">
 
+    <Shell.TitleView>
+        <Image Source="logo.svg"/>
+    </Shell.TitleView>
+
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

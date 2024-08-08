@@ -4,33 +4,35 @@
              x:Class="Quiz.ForNative.Views.Auth.RegisterView"
              xmlns:FormComponents="clr-namespace:Quiz.ForNative.Components.Form"
              Title="Register">
-    <Frame
-        BackgroundColor="{StaticResource Primary}"
-        WidthRequest="550"
-        Padding="30"
-        Margin="0,20,0,20">
-        <ScrollView>
-            <VerticalStackLayout
-                Spacing="15">
-                <HorizontalStackLayout Spacing="25">
-                    <FormComponents:TextInput LabelContent="Lastname" PlaceholderContent="Doe" />
-                    <FormComponents:TextInput LabelContent="Firstname" PlaceholderContent="John" />
-                </HorizontalStackLayout>
-                <HorizontalStackLayout  Spacing="25">
-                    <FormComponents:TextInput LabelContent="Pseudo" PlaceholderContent="john.doe" />
-                    <FormComponents:MailInput 
-                    LabelContent="Mail" 
-                    PlaceholderContent="john.doe@mail.com"
-                    ValidationRules="max:2|required"/>
-                </HorizontalStackLayout>
-                <FormComponents:DateInput LabelContent="Birthdate" />
-                <HorizontalStackLayout Spacing="25">
-                    <FormComponents:PasswordInput LabelContent="Password" PlaceholderContent="Your password" />
-                    <FormComponents:PasswordInput LabelContent="Confirm password" PlaceholderContent="Confirmation password" />
-                </HorizontalStackLayout>
-                <FormComponents:PictureInput LabelContent="Avatar" />
-                <Button Text="Register" />
+    <ScrollView>
+        <Frame
+            BackgroundColor="{StaticResource Primary}"
+            MaximumWidthRequest="550"
+            Padding="30"
+            VerticalOptions="Center"
+            Margin="0,20,0,20">
+            <VerticalStackLayout>
+                <Label
+                Text="Sign up on our app!"
+                HorizontalTextAlignment="Center"/>
+                <ScrollView>
+                    <VerticalStackLayout
+                        Spacing="15">
+                        <FormComponents:MailInput 
+                            LabelContent="Mail" 
+                            PlaceholderContent="john.doe@mail.com"
+                            ValidationRules="max:2|required"/>
+                        <FormComponents:TextInput LabelContent="Lastname" PlaceholderContent="Doe" />
+                        <FormComponents:TextInput LabelContent="Firstname" PlaceholderContent="John" />
+                        <FormComponents:TextInput LabelContent="Pseudo" PlaceholderContent="john.doe" />
+                        <FormComponents:DateInput LabelContent="Birthdate" />
+                        <FormComponents:PasswordInput LabelContent="Password" PlaceholderContent="Your password" />
+                        <FormComponents:PasswordInput LabelContent="Confirm password" PlaceholderContent="Confirmation password" />
+                        <FormComponents:PictureInput LabelContent="Avatar" />
+                        <Button Text="Register" />
+                    </VerticalStackLayout>
+                </ScrollView>
             </VerticalStackLayout>
-        </ScrollView>
-    </Frame>
+        </Frame>
+    </ScrollView>
 </ContentPage>
