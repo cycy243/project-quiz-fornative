@@ -1,3 +1,5 @@
+using CommunityToolkit.Maui.Alerts;
+
 namespace Quiz.ForNative.Components.Form;
 
 public partial class PictureInput : ContentView, IFormInput<string>
@@ -13,10 +15,49 @@ public partial class PictureInput : ContentView, IFormInput<string>
         get => GetValue(LabelProperty) as string;
         set => SetValue(LabelProperty, value);
     }
-    public string PlaceholderContent { get => ""; set{ } }
+
+    public static readonly BindableProperty PlaceholderContentProperty = BindableProperty.Create(
+        nameof(PlaceholderContent),
+        typeof(string),
+        typeof(PictureInput),
+        "Select a file...");
+
+    public string PlaceholderContent
+    {
+        get => GetValue(PlaceholderContentProperty) as string;
+        set => SetValue(PlaceholderContentProperty, value);
+    }
+
+    public FileResult? SelectedFile { get; private set; }
 
     public PictureInput()
     {
         InitializeComponent();
+    }
+
+    private async void UploadBtn_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            PickOptions options = new()
+            {
+                PickerTitle = "Please select a comic file",
+            };
+            var result = await FilePicker.Default.PickAsync(options);
+            if (result != null)
+            {
+                if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
+                    result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+                {
+                    using var stream = await result.OpenReadAsync();
+                    SelectedFile = result;
+                    PlaceholderContent = result.FileName;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            await Snackbar.Make("An error occured").Show();
+        }
     }
 }

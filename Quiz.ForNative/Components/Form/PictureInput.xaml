@@ -5,6 +5,6 @@
              xmlns:local="clr-namespace:Quiz.ForNative.Components.Form"
              x:Name="pictureInput">
     <local:BaseInput LabelText="{Binding LabelContent, Source={x:Reference pictureInput}}">
-        <Label Text="My file input" x:Name="Value" WidthRequest="250"/>
+        <Button x:Name="UploadBtn" Text="{Binding PlaceholderContent, Source={x:Reference pictureInput}}" WidthRequest="250" Clicked="UploadBtn_Clicked"/>
     </local:BaseInput>
 </ContentView>
