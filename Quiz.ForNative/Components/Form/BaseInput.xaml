@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Quiz.ForNative.Components.Form.BaseInput"
-             x:Name="baseInput"
              Margin="0" Padding="0">
     <ContentView.ControlTemplate>
         <ControlTemplate>
-            <VerticalStackLayout HorizontalOptions="Start">
+            <FlexLayout HorizontalOptions="Start" Wrap="Wrap" JustifyContent="SpaceBetween">
                 <Label
-                    Margin="5,0,0,0"
-                    x:Name="Label"
-                    Text="{TemplateBinding LabelText}" />
-                <ContentPresenter Margin="0" Padding="0" />
-            </VerticalStackLayout>
+                    Margin="2,0,0,0"
+                    Text="{TemplateBinding LabelText}"
+                    VerticalOptions="Center"
+                    MinimumWidthRequest="100" Padding="0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnLabelTapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <ContentPresenter
+                    Margin="0" Padding="0" 
+                    MinimumHeightRequest="50"/>
+            </FlexLayout>
         </ControlTemplate>
     </ContentView.ControlTemplate>
 </ContentView>
