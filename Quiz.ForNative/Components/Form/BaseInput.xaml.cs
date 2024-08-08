@@ -1,8 +1,10 @@
+using Microsoft.Maui.Handlers;
 using System.Windows.Input;
+using Microsoft.Maui.Platform;
 
 namespace Quiz.ForNative.Components.Form;
 
-public partial class BaseInput : ContentView
+public partial class BaseInput : Microsoft.Maui.Controls.ContentView
 {
     public static readonly BindableProperty LabelTextProperty = BindableProperty.Create(
         nameof(LabelText),
@@ -15,14 +17,6 @@ public partial class BaseInput : ContentView
         typeof(BaseInput),
         default(string));
 
-    ContentPresenter InputEntry;
-    Label InputLabel;
-
-    public ICommand LabelClickedCommand => new Command(() =>
-    {
-
-    });
-
     public string LabelText
     {
         get => (string)GetValue(LabelTextProperty);
@@ -32,20 +26,23 @@ public partial class BaseInput : ContentView
     public BaseInput()
     {
         InitializeComponent();
-        //LabelClickedCommand = new Command(() =>
-        //{
-        //    (this.baseInput.FindByName("input_container") as Frame).Focus();
-        //});
     }
 
     // Event handler for when the Label is tapped
-    private void OnLabelTapped(object sender, EventArgs e)
+    private async void OnLabelTapped(object sender, EventArgs e)
     {
         // Get the first child in the ContentPresenter that is focusable
-        if (FindVisualElement<ContentPresenter>(this).Content is View view)
+        var containerContent = FindVisualElement<Microsoft.Maui.Controls.ContentPresenter>(this);
+        if (containerContent?.Content is View view)
         {
             view.Focus(); // Set focus to the child view
         }
+#if ANDROID
+        if (containerContent?.Content is Microsoft.Maui.Controls.DatePicker picker)
+        {
+            (picker.Handler as ITimePickerHandler).PlatformView.PerformClick();
+        }
+#endif
     }
 
     // Utility method to find an element of a specific type within the visual tree
