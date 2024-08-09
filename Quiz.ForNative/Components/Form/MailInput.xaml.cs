@@ -64,43 +64,4 @@ public partial class MailInput : ContentView, IFormInput<string>
     {
         InitializeComponent();
     }
-
-    private void ValidateInput(object sender, TextChangedEventArgs e)
-    {
-        //HasError = false;
-        //Error = string.Empty;
-        //var input = this.Input.Text;
-        //foreach (var rule in ValidationRules.Split("|"))
-        //{
-        //    var items = rule.Split(":");
-        //    Error = ValidateFor(input, items[0], items.Length == 1 ? "" : items[1]);
-        //    if (Error != string.Empty)
-        //    {
-        //        HasError = true;
-        //        break;
-        //    }
-        //}
-        if(ValidationFunction != null)
-        {
-            var validationResult = this.ValidationFunction(InputName, this.Input.Text);
-            Error.IsVisible = !string.IsNullOrEmpty(validationResult);
-            if (Error.IsVisible)
-            {
-                Error.Text = validationResult;
-            }
-        }
-    }
-
-    private string ValidateFor(string input, string rule, string constraint)
-    {
-        switch (rule)
-        {
-            case "required":
-                return input.Length == 0 || string.IsNullOrWhiteSpace(input) ? $"The mail is required" : string.Empty;
-            case "max":
-                return input.Length < int.Parse(constraint) ? string.Empty : $"The mail shouldn't have more than {constraint} characters";
-            default:
-                return string.Empty;
-        }
-    }
 }
