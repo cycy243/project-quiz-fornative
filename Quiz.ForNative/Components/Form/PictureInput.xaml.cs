@@ -29,6 +29,8 @@ public partial class PictureInput : ContentView, IFormInput<string>
     }
 
     public FileResult? SelectedFile { get; private set; }
+    public InputValidationFunction ValidationFunction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string InputName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public PictureInput()
     {

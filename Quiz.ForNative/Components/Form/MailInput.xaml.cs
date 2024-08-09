@@ -1,3 +1,6 @@
+using CommunityToolkit.Mvvm.Input;
+using System.Windows.Input;
+
 namespace Quiz.ForNative.Components.Form;
 
 public partial class MailInput : ContentView, IFormInput<string>
@@ -17,6 +20,21 @@ public partial class MailInput : ContentView, IFormInput<string>
         typeof(string),
         typeof(MailInput),
         default(string));
+    public static readonly BindableProperty ValidationFunctionProperty = BindableProperty.Create(
+        nameof(ValidationFunction),
+        typeof(InputValidationFunction),
+        typeof(MailInput));
+    public static readonly BindableProperty InputNameProperty = BindableProperty.Create(
+        nameof(InputName),
+        typeof(string),
+        typeof(MailInput),
+        default(string));
+
+    public InputValidationFunction ValidationFunction
+    {
+        get => GetValue(ValidationFunctionProperty) as InputValidationFunction;
+        set => SetValue(ValidationFunctionProperty, value);
+    }
 
     public string LabelContent
     {
@@ -33,9 +51,14 @@ public partial class MailInput : ContentView, IFormInput<string>
         get => GetValue(ValidationRulesProperty) as string;
         set => SetValue(ValidationRulesProperty, value);
     }
+    
+    public string InputName
+    {
+        get => GetValue(InputNameProperty) as string;
+        set => SetValue(InputNameProperty, value);
+    }
 
     private bool HasError = false;
-    private string Error = string.Empty;
 
     public MailInput()
     {
@@ -44,17 +67,26 @@ public partial class MailInput : ContentView, IFormInput<string>
 
     private void ValidateInput(object sender, TextChangedEventArgs e)
     {
-        HasError = false;
-        Error = string.Empty;
-        var input = this.Input.Text;
-        foreach (var rule in ValidationRules.Split("|"))
+        //HasError = false;
+        //Error = string.Empty;
+        //var input = this.Input.Text;
+        //foreach (var rule in ValidationRules.Split("|"))
+        //{
+        //    var items = rule.Split(":");
+        //    Error = ValidateFor(input, items[0], items.Length == 1 ? "" : items[1]);
+        //    if (Error != string.Empty)
+        //    {
+        //        HasError = true;
+        //        break;
+        //    }
+        //}
+        if(ValidationFunction != null)
         {
-            var items = rule.Split(":");
-            Error = ValidateFor(input, items[0], items.Length == 1 ? "" : items[1]);
-            if (Error != string.Empty)
+            var validationResult = this.ValidationFunction(InputName, this.Input.Text);
+            Error.IsVisible = !string.IsNullOrEmpty(validationResult);
+            if (Error.IsVisible)
             {
-                HasError = true;
-                break;
+                Error.Text = validationResult;
             }
         }
     }

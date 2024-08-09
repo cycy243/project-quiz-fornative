@@ -19,6 +19,8 @@ public partial class DateInput : ContentView, IFormInput<DateOnly>
         get => (DateOnly)GetValue(PlaceholderProperty);
         set => SetValue(PlaceholderProperty, value);
     }
+    public InputValidationFunction ValidationFunction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string InputName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public DateInput()
     {
