@@ -6,11 +6,14 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="mailInput">
     <local:BaseInput LabelText="{Binding LabelContent, Source={x:Reference mailInput}}">
-        <Entry
+        <VerticalStackLayout>
+            <Entry
             x:Uid=""
                 x:Name="Input"
                 Placeholder="{Binding PlaceholderContent, Source={x:Reference mailInput}}"
                 WidthRequest="250"
                 TextChanged="ValidateInput"/>
+            <Label x:Name="Error" />
+        </VerticalStackLayout>
     </local:BaseInput>
 </ContentView>
