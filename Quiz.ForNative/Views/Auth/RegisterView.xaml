@@ -19,9 +19,9 @@
                     <VerticalStackLayout
                         Spacing="15">
                         <FormComponents:MailInput 
+                            x:Name="MailInput"
                             LabelContent="Mail" 
-                            PlaceholderContent="john.doe@mail.com"
-                            ValidationRules="max:2|required"/>
+                            PlaceholderContent="john.doe@mail.com"/>
                         <FormComponents:TextInput LabelContent="Lastname" PlaceholderContent="Doe" />
                         <FormComponents:TextInput LabelContent="Firstname" PlaceholderContent="John" />
                         <FormComponents:TextInput LabelContent="Pseudo" PlaceholderContent="john.doe" />
