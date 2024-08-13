@@ -5,9 +5,11 @@
              xmlns:local="clr-namespace:Quiz.ForNative.Components.Form"
              x:Name="textInput">
     <local:BaseInput LabelText="{Binding LabelContent, Source={x:Reference textInput}}">
-        <Entry
-                x:Name="Value"
+        <local:FormInput
+                x:Name="Input"
+                TypeInput="Text"
                 Placeholder="{Binding PlaceholderContent, Source={x:Reference textInput}}"
+                ValidationFunction="{Binding ValidationFunction, Source={x:Reference textInput}}"
                 WidthRequest="250"/>
     </local:BaseInput>
 </ContentView>
