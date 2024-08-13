@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Quiz.ForNative.Components.Form
 {
-    public delegate string InputValidationFunction(string inputName, string value);
+    public delegate string InputValidationFunction(string inputName, object value);
 
     interface IFormInput<T>
     {
