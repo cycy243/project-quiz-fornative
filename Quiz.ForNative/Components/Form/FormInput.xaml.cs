@@ -80,15 +80,35 @@ public partial class FormInput : ContentView
         var errorLabel = new Label { IsVisible = false, WidthRequest = 250 };
         switch(TypeInput)
         {
-            case InputType.Email:
+            case InputType.TextArea:
+                inputField = new Editor();
+                inputField.Unfocused += (sender, args) =>
+                {
+                    Value = (sender as Editor).Text;
+                };
+                inputField.SetBinding(Editor.PlaceholderProperty, new Binding("Placeholder"));
+                AddValidationHandler(inputField, errorLabel);
+                break;
+            case InputType.Password:
                 inputField = new Entry();
                 inputField.Unfocused += (sender, args) =>
                 {
                     Value = (sender as Entry).Text;
                 };
-                inputField.SetBinding(Entry.PlaceholderProperty, new Binding("Placeholder"));
+                (inputField as Entry).IsPassword = true;
+                inputField.SetBinding(Editor.PlaceholderProperty, new Binding("Placeholder"));
                 AddValidationHandler(inputField, errorLabel);
                 break;
+            case InputType.Date:
+                inputField = new DatePicker();
+                inputField.Unfocused += (sender, args) =>
+                {
+                    Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
+                };
+                inputField.SetBinding(DatePicker.DateProperty, new Binding("Placeholder"));
+                AddValidationHandler(inputField, errorLabel);
+                break;
+            case InputType.Email:
             default:
                 inputField = new Entry();
                 inputField.Unfocused += (sender, args) =>
