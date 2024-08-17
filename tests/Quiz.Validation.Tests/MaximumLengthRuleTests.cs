@@ -26,7 +26,7 @@ namespace Quiz.Validations.Tests
         [TestMethod("When Validable data is int and length is one, the data should only contains one number")]
         public void WhenDataTypeIsIntAndMaximumIsOneAndDataHaveOnlyOneNumberThenReturnTrue() {
             // Arrange
-            IntValidatable.Value = 1;
+            IntValidatable.Value = 0;
 
             // Act
             var hasOneNumber = IntValidatable.Validate(); ;
