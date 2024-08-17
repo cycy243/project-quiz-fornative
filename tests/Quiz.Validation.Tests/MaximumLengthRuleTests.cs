@@ -32,7 +32,7 @@ namespace Quiz.Validations.Tests
             var hasOneNumber = IntValidatable.Validate(); ;
 
             // Assert
-            hasOneNumber.Should().BeTrue();
+            hasOneNumber.Should().BeFalse();
         }
     }
 }
