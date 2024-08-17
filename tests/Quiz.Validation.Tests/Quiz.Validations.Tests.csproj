@@ -7,10 +7,11 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <EnableNETAnalyzers>False</EnableNETAnalyzers>
-    <AnalysisLevel>none</AnalysisLevel>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <AnalysisLevel>preview-minimum</AnalysisLevel>
     <RunAnalyzersDuringLiveAnalysis>True</RunAnalyzersDuringLiveAnalysis>
-    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringBuild>True</RunAnalyzersDuringBuild>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>
