@@ -22,14 +22,13 @@
                             x:Name="MailInput"
                             LabelContent="Mail" 
                             PlaceholderContent="john.doe@mail.com"/>
-                        <FormComponents:TextInput x:Name="LastnameInput" LabelContent="Lastname" PlaceholderContent="Doe" />
-                        <FormComponents:TextInput x:Name="FirstnameInput" LabelContent="Firstname" PlaceholderContent="John" />
-                        <FormComponents:TextInput x:Name="PseudoInput" LabelContent="Pseudo" PlaceholderContent="john.doe" />
-                        <FormComponents:DateInput x:Name="BirthdateInput" LabelContent="Birthdate" />
+                        <FormComponents:TextInput LabelContent="Lastname" PlaceholderContent="Doe" />
+                        <FormComponents:TextInput LabelContent="Firstname" PlaceholderContent="John" />
+                        <FormComponents:TextInput LabelContent="Pseudo" PlaceholderContent="john.doe" />
+                        <FormComponents:DateInput LabelContent="Birthdate" />
                         <FormComponents:PasswordInput x:Name="PasswordInput" LabelContent="Password" PlaceholderContent="Your password" />
-                        <FormComponents:PasswordInput x:Name="ConfirmationPasswordInput" LabelContent="Confirm password" PlaceholderContent="Confirmation password" />
-                        <FormComponents:LongTextInput x:Name="BioInput" LabelContent="Bio" PlaceholderContent="Your bio..." />
-                        <FormComponents:PictureInput x:Name="AvatarInput" LabelContent="Avatar" />
+                        <FormComponents:PasswordInput LabelContent="Confirm password" PlaceholderContent="Confirmation password" />
+                        <FormComponents:PictureInput LabelContent="Avatar" />
                         <Button Text="Register" />
                     </VerticalStackLayout>
                 </ScrollView>

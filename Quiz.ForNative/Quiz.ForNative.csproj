@@ -126,9 +126,6 @@
 	  <MauiXaml Update="Components\Form\FormInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Components\Form\LongTextInput.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Components\Form\PictureInput.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
