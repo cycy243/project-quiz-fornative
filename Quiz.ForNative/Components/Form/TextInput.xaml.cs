@@ -6,26 +6,26 @@ public partial class TextInput : ContentView, IFormInput<string>
     public static readonly BindableProperty LabelProperty = BindableProperty.Create(
         nameof(LabelContent),
         typeof(string),
-        typeof(ContentView),
+        typeof(TextInput),
         default(string));
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
         nameof(PlaceholderContent),
         typeof(string),
-        typeof(ContentView),
+        typeof(TextInput),
         default(string));
     public static readonly BindableProperty ValidationRulesProperty = BindableProperty.Create(
         nameof(ValidationRules),
         typeof(string),
-        typeof(ContentView),
+        typeof(TextInput),
         default(string));
     public static readonly BindableProperty ValidationFunctionProperty = BindableProperty.Create(
         nameof(ValidationFunction),
         typeof(InputValidationFunction),
-        typeof(ContentView));
+        typeof(TextInput));
     public static readonly BindableProperty InputNameProperty = BindableProperty.Create(
         nameof(InputName),
         typeof(string),
-        typeof(ContentView),
+        typeof(TextInput),
         default(string));
 
     public InputValidationFunction ValidationFunction
