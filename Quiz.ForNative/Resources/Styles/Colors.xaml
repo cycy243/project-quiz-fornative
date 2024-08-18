@@ -8,9 +8,9 @@
 
     <Color x:Key="Primary" x:FactoryMethod="FromRgba">
         <x:Arguments>
-            <x:Double>70</x:Double>
-            <x:Double>145</x:Double>
-            <x:Double>51</x:Double>
+            <x:Double>.3</x:Double>
+            <x:Double>.5</x:Double>
+            <x:Double>.2</x:Double>
             <x:Double>0.3</x:Double>
         </x:Arguments>
     </Color>
