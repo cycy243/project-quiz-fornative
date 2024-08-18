@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Quiz.Validations
 {
-    public class ContainsUpperLetterRule<T> : IValidationRule<T>
+    public class ContainsUpperLetterRule : IValidationRule<string>
     {
         public string ValidationMessage { get; set; }
         private int _charNumber { get; set; }
         private Regex _regex
         {
-            get => new Regex(@"[A-Z]{" + _charNumber + "}");
+            get => new Regex(@"[A-Z]");
         }
 
         public ContainsUpperLetterRule(int charNumber)
@@ -22,9 +22,10 @@ namespace Quiz.Validations
             this._charNumber = charNumber;
         }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            return _regex.IsMatch(value as string ?? "");
+            int count = _regex.Matches(value).Count;
+            return _charNumber == 0 ? count == 0 : count >= _charNumber;
         }
     }
 }
