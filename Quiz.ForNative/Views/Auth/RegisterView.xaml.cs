@@ -54,7 +54,7 @@ public partial class RegisterView : ContentPage
         PasswordValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a password" });
         PasswordValidator.Validations.Add(new MinimumLengthRule<string>(8) { ValidationMessage = "The password must have a minimum length of 8" });
         PasswordValidator.Validations.Add(new ContainsUpperLetterRule<string>(1) { ValidationMessage = "Your password must contains at least one upper character" });
-        PasswordValidator.Validations.Add(new ContainsLowerLetterRule<string>(1) { ValidationMessage = "Your password must contains at least one lower character" });
+        PasswordValidator.Validations.Add(new ContainsLowerLetterRule(1) { ValidationMessage = "Your password must contains at least one lower character" });
         NameValidator = new Validatable<string>();
         NameValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a name" });
         NameValidator.Validations.Add(new MinimumLengthRule<string>(3) { ValidationMessage = "You must provide a name that's at least 3 characters long." });

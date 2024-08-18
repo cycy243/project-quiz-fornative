@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Quiz.Validations
 {
-    public class ContainsLowerLetterRule<T> : IValidationRule<T>
+    public class ContainsLowerLetterRule : IValidationRule<string>
     {
         public string ValidationMessage { get; set; }
         private int _charNumber { get; set; }
         private Regex _regex 
         {
-            get =>new Regex(@"[a-z]{" + _charNumber + "}");
+            get =>new Regex(@"[a-z]");
         }
 
         public ContainsLowerLetterRule(int charNumber)
@@ -22,9 +22,9 @@ namespace Quiz.Validations
             this._charNumber = charNumber;
         }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            return _regex.IsMatch(value as string ?? "");
+            return _regex.Matches(value as string ?? "").Count >= _charNumber;
         }
     }
 }
