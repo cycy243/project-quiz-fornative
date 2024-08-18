@@ -24,7 +24,8 @@ namespace Quiz.Validations
 
         public bool Check(string value)
         {
-            return _regex.Matches(value as string ?? "").Count >= _charNumber;
+            int count = _regex.Matches(value).Count;
+            return _charNumber == 0 ? count == 0 : count >= _charNumber;
         }
     }
 }

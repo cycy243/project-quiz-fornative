@@ -89,5 +89,33 @@ namespace Quiz.Validations.Tests
             // Assert
             result.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void WhenContains1LowerLetterAndNeed0ThenReturnFalse()
+        {
+            // Arrange
+            Validatable<string> validatable = new Validatable<string>() { Value = "ddAdDFeg" };
+            validatable.Validations.Add(new ContainsLowerLetterRule(0));
+
+            // Act
+            bool result = validatable.Validate();
+
+            // Assert
+            result.Should().BeFalse();
+        }
+
+        [TestMethod]
+        public void WhenContains0LowerLetterAndNeed0ThenReturnTrue()
+        {
+            // Arrange
+            Validatable<string> validatable = new Validatable<string>() { Value = "DDDD" };
+            validatable.Validations.Add(new ContainsLowerLetterRule(0));
+
+            // Act
+            bool result = validatable.Validate();
+
+            // Assert
+            result.Should().BeTrue();
+        }
     }
 }
