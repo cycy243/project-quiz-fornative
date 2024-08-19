@@ -1,38 +1,35 @@
 ﻿using FluentAssertions;
-using Plugin.ValidationRules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quiz.Validations.Tests
 {
     [TestClass]
     public class MaximumLengthRuleTests
     {
-        public Validatable<string> StringValidatable { get; set; }
-        public Validatable<int> IntValidatable { get; set; }
-
-        [TestInitialize]
-        public void SetUp()
+        [DataTestMethod]
+        [DataRow("dddd", true, "If has less than 5 character then pass")]
+        [DataRow("ddddd", true, "If has exactly 5 character then pass")]
+        [DataRow("ddddsgfsdg", false, "If has more than 5 character then fails")]
+        public void HasAtLeast5Characters(string value, bool pass, string message)
         {
-            StringValidatable = new Validatable<string>();
-            StringValidatable.Validations.Add(new MaximumLengthRule<string>(5));
-            IntValidatable = new Validatable<int>();
-            IntValidatable.Validations.Add(new MaximumLengthRule<int>(1));
-        }
-
-        [TestMethod("When Validable data is int and length is one, the data should only contains one number")]
-        public void WhenDataTypeIsIntAndMaximumIsOneAndDataHaveOnlyOneNumberThenReturnTrue() {
             // Arrange
-            IntValidatable.Value = 1;
+            MaximumLengthRule rule = new MaximumLengthRule(5);
 
             // Act
-            var hasOneNumber = IntValidatable.Validate(); ;
+            bool validationresult = rule.Check(value);
 
             // Assert
-            hasOneNumber.Should().BeTrue();
+            pass.Should().Be(validationresult, message);
+        }
+
+        [TestMethod]
+        public void WhenSet0HasMaximumLengthThenThrowArgumentException()
+        {
+            // Arrange
+            // Act
+            Action act = () => new MaximumLengthRule(-5);
+
+            // Assert
+            act.Should().Throw<ArgumentException>();
         }
     }
 }
