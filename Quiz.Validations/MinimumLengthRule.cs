@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quiz.Validations
 {
-    public class MinimumLengthRule<T> : IValidationRule<T>
+    public class MinimumLengthRule : IValidationRule<string>
     {
         public string ValidationMessage { get; set; }
 
@@ -18,9 +18,9 @@ namespace Quiz.Validations
             this._minimumLength = minimumLength;
         }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            return (value as string)?.Length > _minimumLength;
+            return value?.Length > _minimumLength;
         }
     }
 }
