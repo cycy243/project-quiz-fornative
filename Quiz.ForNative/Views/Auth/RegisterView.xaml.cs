@@ -4,6 +4,7 @@ using Plugin.ValidationRules.Extensions;
 using Plugin.ValidationRules.Rules;
 using Quiz.ForNative.Components.Form;
 using Quiz.Validations;
+using MinimumLengthRule = Quiz.Validations.MinimumLengthRule;
 
 namespace Quiz.ForNative.Views.Auth;
 
@@ -52,22 +53,22 @@ public partial class RegisterView : ContentPage
             .WithRule(new EmailRule(), "Email is not valide");
         PasswordValidator = new Validatable<string>();
         PasswordValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a password" });
-        PasswordValidator.Validations.Add(new MinimumLengthRule<string>(8) { ValidationMessage = "The password must have a minimum length of 8" });
+        PasswordValidator.Validations.Add(new MinimumLengthRule(8) { ValidationMessage = "The password must have a minimum length of 8" });
         PasswordValidator.Validations.Add(new ContainsUpperLetterRule(1) { ValidationMessage = "Your password must contains at least one upper character" });
         PasswordValidator.Validations.Add(new ContainsLowerLetterRule(1) { ValidationMessage = "Your password must contains at least one lower character" });
         NameValidator = new Validatable<string>();
         NameValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a name" });
-        NameValidator.Validations.Add(new MinimumLengthRule<string>(3) { ValidationMessage = "You must provide a name that's at least 3 characters long." });
+        NameValidator.Validations.Add(new MinimumLengthRule(3) { ValidationMessage = "You must provide a name that's at least 3 characters long." });
         FirstnameValidator = new Validatable<string>();
         FirstnameValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a firstname" });
-        FirstnameValidator.Validations.Add(new MinimumLengthRule<string>(3) { ValidationMessage = "You must provide a firstname that's at least 3 characters long." });
+        FirstnameValidator.Validations.Add(new MinimumLengthRule(3) { ValidationMessage = "You must provide a firstname that's at least 3 characters long." });
         BioValidator = new Validatable<string>();
         BioValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a bio" });
-        BioValidator.Validations.Add(new MinimumLengthRule<string>(15) { ValidationMessage = "You must provide a bio that's at least 15 characters long." });
-        BioValidator.Validations.Add(new MaximumLengthRule<string>(255) { ValidationMessage = "You must provide a bio should'nt be more than 255 characters long." });
+        BioValidator.Validations.Add(new MinimumLengthRule(15) { ValidationMessage = "You must provide a bio that's at least 15 characters long." });
+        BioValidator.Validations.Add(new MaximumLengthRule(255) { ValidationMessage = "You must provide a bio should'nt be more than 255 characters long." });
         PseudoValidator = new Validatable<string>();
         PseudoValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a pseudo" });
-        PseudoValidator.Validations.Add(new MinimumLengthRule<string>(4) { ValidationMessage = "You must provide a pseudo that's at least 4 characters long." });
-        PseudoValidator.Validations.Add(new MaximumLengthRule<string>(20) { ValidationMessage = "You must provide a pseudo should'nt be more than 20 characters long." });
+        PseudoValidator.Validations.Add(new MinimumLengthRule(4) { ValidationMessage = "You must provide a pseudo that's at least 4 characters long." });
+        PseudoValidator.Validations.Add(new MaximumLengthRule(20) { ValidationMessage = "You must provide a pseudo should'nt be more than 20 characters long." });
     }
 }
