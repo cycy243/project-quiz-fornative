@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Quiz.Validations
 {
-    public class MaximumLengthRule<T> : IValidationRule<T>
+    public class MaximumLengthRule : IValidationRule<string>
     {
         public string ValidationMessage { get; set; }
 
@@ -15,10 +15,14 @@ namespace Quiz.Validations
 
         public MaximumLengthRule(int maximumLength)
         {
+            if(maximumLength <= 0)
+            {
+                throw new ArgumentException("You shouldn't set a maximum length equal or less than 0");
+            }
             this._maximumLength = maximumLength;
         }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
             return value?.ToString()?.Length <= _maximumLength;
         }
