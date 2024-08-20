@@ -18,8 +18,7 @@ namespace Quiz.Validations
                 return false;
             }
 
-            var str = value as string;
-            return !string.IsNullOrWhiteSpace(str);
+            return value is string ? !string.IsNullOrWhiteSpace(value as string) : true;
         }
     }
 }
