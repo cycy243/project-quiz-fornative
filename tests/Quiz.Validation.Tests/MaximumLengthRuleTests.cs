@@ -9,7 +9,7 @@ namespace Quiz.Validations.Tests
         [DataRow("dddd", true, "If has less than 5 character then pass")]
         [DataRow("ddddd", true, "If has exactly 5 character then pass")]
         [DataRow("ddddsgfsdg", false, "If has more than 5 character then fails")]
-        public void HasAtLeast5Characters(string value, bool pass, string message)
+        public void HasAtMaximum5Characters(string value, bool pass, string message)
         {
             // Arrange
             MaximumLengthRule rule = new MaximumLengthRule(5);
