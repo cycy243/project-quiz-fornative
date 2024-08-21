@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Quiz.Dtos\Quiz.Dtos.csproj" />
+    <ProjectReference Include="..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj" />
+    <ProjectReference Include="..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj" />
+  </ItemGroup>
+
 </Project>

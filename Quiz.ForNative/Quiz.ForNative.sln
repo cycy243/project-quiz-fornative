@@ -23,9 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.Validations", "..\Quiz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.Validations.Tests", "..\tests\Quiz.Validation.Tests\Quiz.Validations.Tests.csproj", "{8622A656-3C7E-4ECC-899B-DA8A12D12CE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Services", "..\Quiz.ForNative.Services\Quiz.ForNative.Services.csproj", "{D5748F5B-1FC3-4EBA-B7DD-08D6585DD5FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Services", "..\Quiz.ForNative.Services\Quiz.ForNative.Services.csproj", "{D5748F5B-1FC3-4EBA-B7DD-08D6585DD5FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Repository", "..\Quiz.ForNative.Repository\Quiz.ForNative.Repository.csproj", "{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository", "..\Quiz.ForNative.Repository\Quiz.ForNative.Repository.csproj", "{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Repository.Exceptions", "..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj", "{17208FC5-A246-42D5-B4A4-E2EC8DE82246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Repository.Interfaces", "..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj", "{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17208FC5-A246-42D5-B4A4-E2EC8DE82246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17208FC5-A246-42D5-B4A4-E2EC8DE82246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17208FC5-A246-42D5-B4A4-E2EC8DE82246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17208FC5-A246-42D5-B4A4-E2EC8DE82246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +102,8 @@ Global
 		{8622A656-3C7E-4ECC-899B-DA8A12D12CE0} = {0C2B35B3-FA83-441A-8672-4A4183286D97}
 		{D5748F5B-1FC3-4EBA-B7DD-08D6585DD5FE} = {32107103-9DD7-413E-A386-855187C4B270}
 		{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1} = {32107103-9DD7-413E-A386-855187C4B270}
+		{17208FC5-A246-42D5-B4A4-E2EC8DE82246} = {32107103-9DD7-413E-A386-855187C4B270}
+		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754} = {32107103-9DD7-413E-A386-855187C4B270}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8333539B-C18F-4859-B984-7C444B6E0E8F}

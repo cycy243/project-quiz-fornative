@@ -2,7 +2,7 @@
 
 namespace Quiz.ViewModels.Interface
 {
-    public record RegisterUserArgs(string Name, string Firstname, string Pseudo, string Password, string Email, string PicturePath, string Bio);
+    public record RegisterUserArgs(string Name, string Firstname, string Pseudo, string Password, string Email, string PicturePath, string Bio, string BirthDate);
 
     /// <summary>
     /// Interface that exposes what the viewmodel of the register view, has to be able to do
