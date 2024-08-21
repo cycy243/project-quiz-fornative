@@ -30,7 +30,7 @@
                         <FormComponents:PasswordInput x:Name="ConfirmationPasswordInput" LabelContent="Confirm password" PlaceholderContent="Confirmation password" />
                         <FormComponents:LongTextInput x:Name="BioInput" LabelContent="Bio" PlaceholderContent="Your bio..." />
                         <FormComponents:PictureInput x:Name="AvatarInput" LabelContent="Avatar" />
-                        <Button Text="Register" />
+                        <Button Text="Register" x:Name="RegisterBtn" Clicked="OnRegister_Clicked" />
                     </VerticalStackLayout>
                 </ScrollView>
             </VerticalStackLayout>

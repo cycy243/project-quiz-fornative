@@ -4,29 +4,38 @@ using Plugin.ValidationRules.Extensions;
 using Plugin.ValidationRules.Rules;
 using Quiz.ForNative.Components.Form;
 using Quiz.Validations;
+using Quiz.ViewModels.Interface;
 using MinimumLengthRule = Quiz.Validations.MinimumLengthRule;
 
 namespace Quiz.ForNative.Views.Auth;
 
 public partial class RegisterView : ContentPage
 {
-    Validatable<string> EmailValidator { get; set; }
-    Validatable<string> PasswordValidator { get; set; }
-    Validatable<string> NameValidator { get; set; }
-    Validatable<string> FirstnameValidator { get; set; }
-    Validatable<DateOnly> BirthdateValidator { get; set; }
-    Validatable<string> BioValidator { get; set; }
-    Validatable<string> PseudoValidator { get; set; }
+    public Validatable<string> EmailValidator { get; private set; }
+    public Validatable<string> PasswordValidator { get; private set; }
+    public Validatable<string> NameValidator { get; private set; }
+    public Validatable<string> FirstnameValidator { get; private set; }
+    public Validatable<DateOnly> BirthdateValidator { get; private set; }
+    public Validatable<string> BioValidator { get; private set; }
+    public Validatable<string> PseudoValidator { get; private set; }
+    public IRegisterViewModel ViewModel { get; private init; }
 
-    public RegisterView()
+    public RegisterView(IRegisterViewModel viewModel)
 	{
 		InitializeComponent();
+
+        ViewModel = viewModel;
 
         InitializeValidator();
         InitializedValidationHandlers();
     }
 
-	private void InitializedValidationHandlers()
+    private void OnRegister_Clicked(object? sender, EventArgs e)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void InitializedValidationHandlers()
     {
 
         MailInput.ValidationFunction += (inputName, value) => ValidateInput((value as string)!, EmailValidator);
