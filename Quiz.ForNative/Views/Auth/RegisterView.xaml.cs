@@ -1,7 +1,9 @@
+using CommunityToolkit.Maui.Alerts;
 using Microsoft.Extensions.Options;
 using Plugin.ValidationRules;
 using Plugin.ValidationRules.Extensions;
 using Plugin.ValidationRules.Rules;
+using Quiz.Dtos.Api;
 using Quiz.ForNative.Components.Form;
 using Quiz.Validations;
 using Quiz.ViewModels.Interface;
@@ -32,7 +34,23 @@ public partial class RegisterView : ContentPage
 
     private void OnRegister_Clicked(object? sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        try
+        {
+            ViewModel.RegisterUser(new RegisterUserArgs(
+                NameValidator.Value,
+                FirstnameValidator.Value,
+                PseudoValidator.Value,
+                PasswordValidator.Value,
+                EmailValidator.Value,
+                "",
+                BioValidator.Value,
+                BirthdateValidator.Value.ToString("dd/MM/YYYY")
+            ));
+        }
+        catch(Exception ex)
+        {
+            Toast.Make(ex.Message).Show();
+        }
     }
 
     private void InitializedValidationHandlers()

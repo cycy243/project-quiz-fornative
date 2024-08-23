@@ -91,6 +91,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Quiz.Dtos\Quiz.Dtos.csproj" />
+	  <ProjectReference Include="..\Quiz.ForNative.Args\Quiz.ForNative.Args.csproj" />
+	  <ProjectReference Include="..\Quiz.ForNative.Services\Quiz.ForNative.Services.csproj" />
+	  <ProjectReference Include="..\Quiz.Models\Quiz.Models.csproj" />
 	  <ProjectReference Include="..\Quiz.Validations\Quiz.Validations.csproj" />
 	  <ProjectReference Include="..\Quiz.ViewModels\Quiz.ViewModels.csproj" />
 	</ItemGroup>

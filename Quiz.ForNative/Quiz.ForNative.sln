@@ -27,9 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Services", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository", "..\Quiz.ForNative.Repository\Quiz.ForNative.Repository.csproj", "{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Repository.Exceptions", "..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj", "{17208FC5-A246-42D5-B4A4-E2EC8DE82246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository.Exceptions", "..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj", "{17208FC5-A246-42D5-B4A4-E2EC8DE82246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Repository.Interfaces", "..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj", "{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository.Interfaces", "..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj", "{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Middleware.Http.Tests", "..\Quiz.ForNative.Repository.Tests\Quiz.ForNative.Middleware.Http.Tests.csproj", "{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Middleware.Http", "..\Quiz.ForNative.Middleware.Http\Quiz.ForNative.Middleware.Http.csproj", "{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Args", "..\Quiz.ForNative.Args\Quiz.ForNative.Args.csproj", "{0866EB54-1321-427B-93CE-7A7223DD4973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Tests.Utils", "..\Quiz.ForNative.Tests.Utils\Quiz.ForNative.Tests.Utils.csproj", "{FA054FE2-4AE0-49D5-90B3-1C9812F918CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +95,22 @@ Global
 		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0866EB54-1321-427B-93CE-7A7223DD4973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0866EB54-1321-427B-93CE-7A7223DD4973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0866EB54-1321-427B-93CE-7A7223DD4973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0866EB54-1321-427B-93CE-7A7223DD4973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA054FE2-4AE0-49D5-90B3-1C9812F918CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA054FE2-4AE0-49D5-90B3-1C9812F918CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA054FE2-4AE0-49D5-90B3-1C9812F918CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA054FE2-4AE0-49D5-90B3-1C9812F918CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +128,10 @@ Global
 		{DAE31D23-5E9A-4987-9569-B6F84F9D5BC1} = {32107103-9DD7-413E-A386-855187C4B270}
 		{17208FC5-A246-42D5-B4A4-E2EC8DE82246} = {32107103-9DD7-413E-A386-855187C4B270}
 		{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754} = {32107103-9DD7-413E-A386-855187C4B270}
+		{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5} = {0C2B35B3-FA83-441A-8672-4A4183286D97}
+		{B0C8CD29-2FC8-40F9-9313-D2302108E1CE} = {32107103-9DD7-413E-A386-855187C4B270}
+		{0866EB54-1321-427B-93CE-7A7223DD4973} = {32107103-9DD7-413E-A386-855187C4B270}
+		{FA054FE2-4AE0-49D5-90B3-1C9812F918CD} = {0C2B35B3-FA83-441A-8672-4A4183286D97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8333539B-C18F-4859-B984-7C444B6E0E8F}
