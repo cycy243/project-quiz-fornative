@@ -8,14 +8,14 @@ namespace Quiz.ForNative.Repository.Interfaces
 {
     public interface IRepository<T, S> where S : class
     {
-        bool Add(T entity);
+        Task<bool> Add(T entity);
 
-        bool Delete(T entity);
+        Task<bool> Delete(T entity);
 
-        T Update(T entity);
+        Task<T> Update(T entity);
 
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
 
-        IEnumerable<T> Search(S args);
+        Task<IEnumerable<T>> Search(S args);
     }
 }
