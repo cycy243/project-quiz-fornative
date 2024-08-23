@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Quiz.ForNative.Repository.Exceptions
 {
-    public class UnAuthorizedAccessException: Exception
+    public class RessourceAlreadyExistsException: Exception
     {
-        public UnAuthorizedAccessException(string message): base(message) { }
+        public RessourceAlreadyExistsException(string message): base(message) { }
     }
 }
