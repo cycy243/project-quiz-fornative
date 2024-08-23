@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository.Interfaces", "..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj", "{FCDC9BFB-B5E2-47F8-8ABE-A55FE8144754}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Middleware.Http.Tests", "..\Quiz.ForNative.Repository.Tests\Quiz.ForNative.Middleware.Http.Tests.csproj", "{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Middleware.Http.Tests", "..\Quiz.ForNative.Middleware.Http.Tests\Quiz.ForNative.Middleware.Http.Tests.csproj", "{7D4B1DCC-4371-43EF-BD3A-0BF8B6051AC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Middleware.Http", "..\Quiz.ForNative.Middleware.Http\Quiz.ForNative.Middleware.Http.csproj", "{B0C8CD29-2FC8-40F9-9313-D2302108E1CE}"
 EndProject
