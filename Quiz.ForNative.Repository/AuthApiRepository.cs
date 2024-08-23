@@ -1,13 +1,7 @@
 ﻿using Newtonsoft.Json;
-using Quiz.Dtos.App;
+using Quiz.Dtos.Api;
 using Quiz.ForNative.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Quiz.ForNative.Repository
 {

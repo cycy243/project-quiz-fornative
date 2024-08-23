@@ -1,23 +1,23 @@
-﻿using Quiz.Dtos.Api;
-using Quiz.Dtos.App;
+﻿using ApiDtos = Quiz.Dtos.Api;
+using AppDtos = Quiz.Dtos.App;
 using Quiz.ForNative.Args;
 using Quiz.ForNative.Repository.Interfaces;
 using Quiz.ForNative.Services.Interface;
 
 namespace Quiz.ForNative.Services
 {
-    public class RegisterService : RegisterService<RegisterDto>
+    public class RegisterService : RegisterService<ApiDtos.RegisterDto>
     {
-        private IRepository<UserDto, UserSearchArgs> _userRepository;
+        private IRepository<ApiDtos.UserDto, UserSearchArgs> _userRepository;
 
-        public RegisterService(IRepository<UserDto, UserSearchArgs> userRepository)
+        public RegisterService(IRepository<ApiDtos.UserDto, UserSearchArgs> userRepository)
         {
             _userRepository = userRepository;
         }
 
-        public async Task<RegisterDto> RegisterUser(RegisterDto entity)
+        public async Task<ApiDtos.RegisterDto> RegisterUser(ApiDtos.RegisterDto entity)
         {
-            bool registerResult = await _userRepository.Add(new UserDto(
+            bool registerResult = await _userRepository.Add(new ApiDtos.UserDto(
                 Bio: entity.Bio,
                 Email: entity.Email,
                 Firstname: entity.Firstname,
