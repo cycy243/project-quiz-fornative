@@ -1,40 +1,43 @@
-﻿using Quiz.Dtos.App;
+﻿using Newtonsoft.Json;
+using Quiz.Dtos.App;
+using Quiz.ForNative.Args;
 using Quiz.ForNative.Repository.Interfaces;
+using System.Net.Http.Json;
 
 namespace Quiz.ForNative.Repository
 {
-    public record UserSearchArgs(string Name, string Firstname, string Pseudo, string Email);
-
     public class UserRepository : IRepository<UserDto, UserSearchArgs>
     {
-        public HttpClient HttpClient { get; set; }
+        private HttpClient _httpClient { get; init; }
 
         public UserRepository(HttpClient httpClient) 
         {
-            HttpClient = httpClient;
+            _httpClient = httpClient;
         }
 
-        public bool Add(UserDto entity)
+        public async Task<bool> Add(UserDto entity)
         {
-            throw new NotImplementedException();
+            return (await _httpClient.PostAsJsonAsync(new Uri("/user"), entity)).IsSuccessStatusCode;
         }
 
-        public bool Delete(UserDto entity)
+        public async Task<bool> Delete(UserDto entity)
         {
-            throw new NotImplementedException();
+            return (await _httpClient.DeleteAsync(new Uri($"/user/{entity.Id}"))).IsSuccessStatusCode;
         }
 
-        public IEnumerable<UserDto> GetAll()
+        public async Task<UserDto> Update(UserDto entity)
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _httpClient.PutAsJsonAsync(new Uri($"/user/{entity.Id}"), entity);
+            return JsonConvert.DeserializeObject<UserDto>(await response.Content.ReadAsStringAsync())!;
         }
 
-        public IEnumerable<UserDto> Search(UserSearchArgs args)
+        public async Task<IEnumerable<UserDto>> GetAll()
         {
-            throw new NotImplementedException();
+            HttpResponseMessage response = await _httpClient.GetAsync(new Uri($"/user"));
+            return JsonConvert.DeserializeObject<IEnumerable<UserDto>>(await response.Content.ReadAsStringAsync())!;
         }
 
-        public UserDto Update(UserDto entity)
+        public Task<IEnumerable<UserDto>> Search(UserSearchArgs args)
         {
             throw new NotImplementedException();
         }
