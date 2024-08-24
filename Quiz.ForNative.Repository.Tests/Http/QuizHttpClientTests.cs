@@ -9,7 +9,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Quiz.ForNative.Repository.Tests
+namespace Quiz.ForNative.Repository.Tests.Http
 {
     [TestClass]
     public class QuizHttpClientTests
