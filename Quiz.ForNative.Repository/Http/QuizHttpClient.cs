@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Quiz.ForNative.Repository.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Json;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Quiz.ForNative.Repository.Http
 {
-    public class QuizHttpClient
+    public class QuizHttpClient: IQuizHttpClient
     {
         HttpClient _httpClient;
 
