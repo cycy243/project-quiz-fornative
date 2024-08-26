@@ -34,5 +34,22 @@ namespace Quiz.ForNative.Repository.Http
                 throw;
             }
         }
+
+        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, HttpContent data, CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                return await _httpClient.PostAsync(requestUri, data, cancellationToken);
+            }
+            catch (TaskCanceledException ex)
+            {
+                if (ex.CancellationToken == cancellationToken)
+                {
+                    throw new TimeoutException("The request timed out.", ex);
+                }
+
+                throw;
+            }
+        }
     }
 }

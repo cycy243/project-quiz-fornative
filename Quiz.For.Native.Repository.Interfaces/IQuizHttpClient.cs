@@ -19,5 +19,7 @@ namespace Quiz.ForNative.Repository.Interfaces
         /// An HttpResponseMessage containing the request result.
         /// </returns>
         Task<HttpResponseMessage> PostAsJsonAsync<T>(string requestUri, T data, CancellationToken cancellationToken = default);
+
+        Task<HttpResponseMessage> PostAsync<T>(string requestUri, HttpContent data, CancellationToken cancellationToken = default);
     }
 }
