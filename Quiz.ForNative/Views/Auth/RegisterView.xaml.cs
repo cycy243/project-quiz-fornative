@@ -3,16 +3,17 @@ using Microsoft.Extensions.Options;
 using Plugin.ValidationRules;
 using Plugin.ValidationRules.Extensions;
 using Plugin.ValidationRules.Rules;
-using Quiz.Dtos.Api;
 using Quiz.ForNative.Components.Form;
 using Quiz.Validations;
 using Quiz.ViewModels.Interface;
+using System.Linq;
 using MinimumLengthRule = Quiz.Validations.MinimumLengthRule;
 
 namespace Quiz.ForNative.Views.Auth;
 
 public partial class RegisterView : ContentPage
 {
+    internal static string RouteName = "RegisterView";
     public Validatable<string> EmailValidator { get; private set; }
     public Validatable<string> PasswordValidator { get; private set; }
     public Validatable<string> NameValidator { get; private set; }
@@ -20,6 +21,7 @@ public partial class RegisterView : ContentPage
     public Validatable<DateOnly> BirthdateValidator { get; private set; }
     public Validatable<string> BioValidator { get; private set; }
     public Validatable<string> PseudoValidator { get; private set; }
+    public string AvatarPath { get; private set; }
     public IRegisterViewModel ViewModel { get; private init; }
 
     public RegisterView(IRegisterViewModel viewModel)
@@ -36,21 +38,35 @@ public partial class RegisterView : ContentPage
     {
         try
         {
-            ViewModel.RegisterUser(new RegisterUserArgs(
-                NameValidator.Value,
-                FirstnameValidator.Value,
-                PseudoValidator.Value,
-                PasswordValidator.Value,
-                EmailValidator.Value,
-                "",
-                BioValidator.Value,
-                BirthdateValidator.Value.ToString("dd/MM/YYYY")
-            ));
+            if(ALlFieldAreValid())
+            {
+                ErrorLabel.IsVisible = false;
+                ViewModel.RegisterUser(new RegisterUserArgs(
+                    NameValidator.Value,
+                    FirstnameValidator.Value,
+                    PseudoValidator.Value,
+                    PasswordValidator.Value,
+                    EmailValidator.Value,
+                    AvatarPath,
+                    BioValidator.Value,
+                    BirthdateValidator.Value.ToString("dd/MM/yyyy")
+                ));
+            }
+            else
+            {
+                ErrorLabel.IsVisible = true;
+            }
         }
         catch(Exception ex)
         {
             Toast.Make(ex.Message).Show();
         }
+    }
+
+    private bool ALlFieldAreValid()
+    {
+        return EmailValidator.Validate() && PasswordValidator.Validate() && NameValidator.Validate() && FirstnameValidator.Validate()
+            && PseudoValidator.Validate() && BioValidator.Validate() && BirthdateValidator.Validate();
     }
 
     private void InitializedValidationHandlers()
@@ -62,9 +78,26 @@ public partial class RegisterView : ContentPage
         FirstnameInput.ValidationFunction += (inputName, value) => ValidateInput((value as string)!, FirstnameValidator);
         PseudoInput.ValidationFunction += (inputName, value) => ValidateInput((value as string)!, PseudoValidator);
         BioInput.ValidationFunction += (inputName, value) => ValidateInput((value as string)!, BioValidator);
+        BirthdateInput.ValidationFunction += (inputName, value) => ValidateInput(DateOnly.Parse((value as string)!), BirthdateValidator);
         ConfirmationPasswordInput.ValidationFunction += (inputName, value) => {
             return value != null && (value as string) == PasswordValidator.Value ? "" : "The passwords doesn't match";
         };
+        AvatarInput.ValidationFunction += (inputName, value) =>
+        {
+            string castedValue = value as string;
+            if (castedValue != null && FileExtensionIsValid(castedValue))
+            {
+
+                AvatarPath = castedValue;
+                return "";
+            }
+            return "Only accept file with type: jpg, jpeg and png";
+        };
+    }
+
+    private bool FileExtensionIsValid(string filePath)
+    {
+        return filePath.Contains(".jpg") || filePath.Contains(".jpeg") || filePath.Contains(".png");
     }
 
     private string ValidateInput<S>(S input, Validatable<S> validator)
@@ -97,5 +130,7 @@ public partial class RegisterView : ContentPage
         PseudoValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a pseudo" });
         PseudoValidator.Validations.Add(new MinimumLengthRule(4) { ValidationMessage = "You must provide a pseudo that's at least 4 characters long." });
         PseudoValidator.Validations.Add(new MaximumLengthRule(20) { ValidationMessage = "You must provide a pseudo should'nt be more than 20 characters long." });
+        BirthdateValidator = new Validatable<DateOnly>();
+        BirthdateValidator.Validations.Add(new UserIsAtLeast13YearsOldRule());
     }
 }

@@ -18,6 +18,10 @@
                 <ScrollView>
                     <VerticalStackLayout
                         Spacing="15">
+                        <Label
+                            x:Name="ErrorLabel"
+                            IsVisible="False"
+                            Text="One or more field(s) are not valid"/>
                         <FormComponents:MailInput 
                             x:Name="MailInput"
                             LabelContent="Mail" 
