@@ -24,6 +24,7 @@ namespace Quiz.Validations
 
         public bool Check(string value)
         {
+            if (value is null) return false;
             int count = _regex.Matches(value).Count;
             return _charNumber == 0 ? count == 0 : count >= _charNumber;
         }

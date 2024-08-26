@@ -24,6 +24,7 @@ namespace Quiz.Validations
 
         public bool Check(string value)
         {
+            if (value is null) return false;
             return value?.ToString()?.Length <= _maximumLength;
         }
     }
