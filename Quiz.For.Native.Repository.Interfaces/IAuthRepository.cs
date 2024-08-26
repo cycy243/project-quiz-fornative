@@ -12,9 +12,10 @@ namespace Quiz.ForNative.Repository.Interfaces
         /// Register a user and return it
         /// </summary>
         /// <param name="user">User to register</param>
+        /// <param name="fileStream">Stream containing the avatar file to upload</param>
         /// <returns>
         /// The registered user
         /// </returns>
-        Task<T> RegisterUser(T user);
+        Task<T> RegisterUser(T user, FileStream fileStream);
     }
 }
