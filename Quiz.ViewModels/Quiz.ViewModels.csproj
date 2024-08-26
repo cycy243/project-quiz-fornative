@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Quiz.ForNative.Services\Quiz.ForNative.Services.csproj" />
+  </ItemGroup>
+
 </Project>

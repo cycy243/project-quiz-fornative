@@ -17,6 +17,6 @@ namespace Quiz.ViewModels.Interface
         /// true is the user has successfully registered false otherwise
         /// </returns>
         /// <exception cref="ViewModelException">If an error occured</exception>
-        bool RegisterUser(RegisterUserArgs args);
+        Task<bool> RegisterUser(RegisterUserArgs args);
     }
 }

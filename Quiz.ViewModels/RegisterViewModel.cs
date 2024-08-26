@@ -1,4 +1,6 @@
-﻿using Quiz.ViewModels.Interface;
+﻿using Quiz.Dtos;
+using Quiz.ForNative.Services.Interface;
+using Quiz.ViewModels.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,15 @@ namespace Quiz.ViewModels
 {
     public class RegisterViewModel : IRegisterViewModel
     {
-        public bool RegisterUser(RegisterUserArgs args)
+        private RegisterService<RegisterDto> _registerService;
+        public RegisterViewModel(RegisterService<RegisterDto> registerService) 
         {
-            throw new NotImplementedException();
+            _registerService = registerService;
+        }
+
+        public async Task<bool> RegisterUser(RegisterUserArgs args)
+        {
+            return (await _registerService.RegisterUser(new RegisterDto(args.Name, args.Firstname, args.Pseudo, args.Password, args.Email, args.PicturePath, args.Bio, args.BirthDate))) != null;
         }
     }
 }
