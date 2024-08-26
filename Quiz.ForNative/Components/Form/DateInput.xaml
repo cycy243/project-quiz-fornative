@@ -5,6 +5,11 @@
              xmlns:local="clr-namespace:Quiz.ForNative.Components.Form"
              x:Name="dateInput">
     <local:BaseInput LabelText="{Binding LabelContent, Source={x:Reference dateInput}}">
-        <DatePicker x:Name="Value" WidthRequest="250"/>
+        <local:FormInput
+                x:Name="Input"
+                TypeInput="Date"
+                Placeholder="{Binding PlaceholderContent, Source={x:Reference dateInput}}"
+                ValidationFunction="{Binding ValidationFunction, Source={x:Reference dateInput}}"
+                WidthRequest="250"/>
     </local:BaseInput>
 </ContentView>

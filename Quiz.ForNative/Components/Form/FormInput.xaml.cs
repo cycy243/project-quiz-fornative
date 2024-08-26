@@ -101,12 +101,24 @@ public partial class FormInput : ContentView
                 break;
             case InputType.Date:
                 inputField = new DatePicker();
+                (inputField as DatePicker).DateSelected += (sender, args) =>
+                {
+                    Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
+                };
                 inputField.Unfocused += (sender, args) =>
                 {
                     Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
                 };
                 inputField.SetBinding(DatePicker.DateProperty, new Binding("Placeholder"));
-                AddValidationHandler(inputField, errorLabel);
+                (inputField as DatePicker).DateSelected += (sender, args) =>
+                {
+                    if (ValidationFunction != null)
+                    {
+                        var validationResult = this.ValidationFunction(InputName, Value);
+                        errorLabel.Text = string.IsNullOrEmpty(validationResult) ? string.Empty : validationResult;
+                        errorLabel.IsVisible = !string.IsNullOrEmpty(validationResult);
+                    }
+                };
                 break;
             case InputType.Email:
             default:

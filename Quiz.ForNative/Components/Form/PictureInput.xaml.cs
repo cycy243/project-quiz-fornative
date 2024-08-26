@@ -21,6 +21,15 @@ public partial class PictureInput : ContentView, IFormInput<string>
         typeof(string),
         typeof(PictureInput),
         "Select a file...");
+    public static readonly BindableProperty ValidationFunctionProperty = BindableProperty.Create(
+        nameof(ValidationFunction),
+        typeof(InputValidationFunction),
+        typeof(PictureInput));
+    public static readonly BindableProperty InputNameProperty = BindableProperty.Create(
+        nameof(InputName),
+        typeof(string),
+        typeof(PictureInput),
+        default(string));
 
     public string PlaceholderContent
     {
@@ -29,8 +38,16 @@ public partial class PictureInput : ContentView, IFormInput<string>
     }
 
     public FileResult? SelectedFile { get; private set; }
-    public InputValidationFunction ValidationFunction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string InputName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public InputValidationFunction ValidationFunction
+    {
+        get => GetValue(ValidationFunctionProperty) as InputValidationFunction;
+        set => SetValue(ValidationFunctionProperty, value);
+    }
+    public string InputName
+    {
+        get => GetValue(InputNameProperty) as string;
+        set => SetValue(InputNameProperty, value);
+    }
 
     public PictureInput()
     {
@@ -54,6 +71,7 @@ public partial class PictureInput : ContentView, IFormInput<string>
                     using var stream = await result.OpenReadAsync();
                     SelectedFile = result;
                     PlaceholderContent = result.FileName;
+                    ValidationFunction(nameof(PictureInput), result.FullPath);
                 }
             }
         }

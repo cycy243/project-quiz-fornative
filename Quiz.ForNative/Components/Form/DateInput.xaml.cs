@@ -7,6 +7,15 @@ public partial class DateInput : ContentView, IFormInput<DateOnly>
 
     public readonly BindableProperty PlaceholderProperty =
         BindableProperty.Create(nameof(PlaceholderContent), typeof(DateOnly), typeof(TextInput), default(DateOnly));
+    public static readonly BindableProperty ValidationFunctionProperty = BindableProperty.Create(
+        nameof(ValidationFunction),
+        typeof(InputValidationFunction),
+        typeof(DateInput));
+    public static readonly BindableProperty InputNameProperty = BindableProperty.Create(
+        nameof(InputName),
+        typeof(string),
+        typeof(DateInput),
+        default(string));
 
     public string LabelContent
     {
@@ -19,8 +28,18 @@ public partial class DateInput : ContentView, IFormInput<DateOnly>
         get => (DateOnly)GetValue(PlaceholderProperty);
         set => SetValue(PlaceholderProperty, value);
     }
-    public InputValidationFunction ValidationFunction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string InputName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+    public InputValidationFunction ValidationFunction
+    {
+        get => GetValue(ValidationFunctionProperty) as InputValidationFunction;
+        set => SetValue(ValidationFunctionProperty, value);
+    }
+
+    public string InputName
+    {
+        get => GetValue(InputNameProperty) as string;
+        set => SetValue(InputNameProperty, value);
+    }
 
     public DateInput()
     {
