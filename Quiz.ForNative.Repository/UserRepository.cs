@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Quiz.Dtos.App;
+using Quiz.Dtos;
 using Quiz.ForNative.Args;
 using Quiz.ForNative.Repository.Interfaces;
 using System.Net.Http.Json;
