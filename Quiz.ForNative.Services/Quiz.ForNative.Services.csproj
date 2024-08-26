@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Quiz.Dtos\Quiz.Dtos.csproj" />
     <ProjectReference Include="..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj" />
     <ProjectReference Include="..\Quiz.ForNative.Args\Quiz.ForNative.Args.csproj" />
