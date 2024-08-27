@@ -14,7 +14,7 @@ namespace Quiz.ForNative.Middleware.Http.Tests
         public async Task WhenHttpClientGetResponseWithConflictStatusThenThrowError()
         {
             // Arrange
-            ApiErrorDto apiError = new ApiErrorDto(400, "una error", "une error", []);
+            ApiErrorDto apiError = new ApiErrorDto(400, "una error", "une error", [ "une error" ]);
             var handlerMock = HttpMessageHandlerMock.CreateHttpMessageHandler(HttpStatusCode.BadRequest, new StringContent(JsonConvert.SerializeObject(apiError)));
 
             var badRequestHandler = new BadRequestHandler
@@ -29,7 +29,9 @@ namespace Quiz.ForNative.Middleware.Http.Tests
             Func<Task> action = async () => await httpClient.GetAsync("https://www.google.com");
 
             // Assert
-            await action.Should().ThrowAsync<ValidationException>();
+            await action.Should()
+                .ThrowAsync<ValidationException>()
+                .Where(e => e.Errors.Length == 1 && e.Errors[0] == "une error");
         }
 
         [TestMethod]
