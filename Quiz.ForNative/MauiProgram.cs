@@ -74,9 +74,11 @@ namespace Quiz.ForNative
                     httpClient.BaseAddress = new Uri("http://192.168.4.37:3000");
                 })
                 .AddHttpMessageHandler<ConflictHandler>()
-                .AddHttpMessageHandler<UnAuthorizedAccessHandler>();
+                .AddHttpMessageHandler<UnAuthorizedAccessHandler>()
+                .AddHttpMessageHandler<BadRequestHandler>();
             services.AddTransient<ConflictHandler>()
-                .AddTransient<UnAuthorizedAccessHandler>();
+                .AddTransient<UnAuthorizedAccessHandler>()
+                .AddTransient<BadRequestHandler>();
             return services;
         }
 

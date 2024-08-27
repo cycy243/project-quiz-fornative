@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Quiz.Dtos\Quiz.Dtos.csproj" />
     <ProjectReference Include="..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj" />
   </ItemGroup>
 
