@@ -49,6 +49,17 @@ public partial class PictureInput : ContentView, IFormInput<string>
         set => SetValue(InputNameProperty, value);
     }
 
+    public bool Validate()
+    {
+        string validationResult = ValidationFunction(InputName, PlaceholderContent);
+        bool isEmpty = string.IsNullOrEmpty(validationResult);
+        if (!isEmpty)
+        {
+            // ErrorTxt = validationResult;
+        }
+        return isEmpty;
+    }
+
     public PictureInput()
     {
         InitializeComponent();
@@ -60,13 +71,14 @@ public partial class PictureInput : ContentView, IFormInput<string>
         {
             PickOptions options = new()
             {
-                PickerTitle = "Please select a comic file",
+                PickerTitle = "Please select an avatar",
             };
             var result = await FilePicker.Default.PickAsync(options);
             if (result != null)
             {
                 if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
-                    result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
+                    result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase) ||
+                    result.FileName.EndsWith("jpeg", StringComparison.OrdinalIgnoreCase))
                 {
                     using var stream = await result.OpenReadAsync();
                     SelectedFile = result;

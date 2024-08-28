@@ -54,6 +54,17 @@ public partial class LongTextInput : ContentView, IFormInput<string>
         get => GetValue(InputNameProperty) as string;
         set => SetValue(InputNameProperty, value);
     }
+
+    public bool Validate()
+    {
+        string validationResult = ValidationFunction(InputName, Input.Value);
+        bool isEmpty = string.IsNullOrEmpty(validationResult);
+        if (!isEmpty)
+        {
+            Input.ErrorTxt = validationResult;
+        }
+        return isEmpty;
+    }
     public LongTextInput()
 	{
 		InitializeComponent();

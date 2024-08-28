@@ -4,6 +4,7 @@ using Plugin.ValidationRules;
 using Plugin.ValidationRules.Extensions;
 using Plugin.ValidationRules.Rules;
 using Quiz.ForNative.Components.Form;
+using Quiz.ForNative.Services.Exceptions;
 using Quiz.Validations;
 using Quiz.ViewModels.Interface;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Quiz.ForNative.Views.Auth;
 
 public partial class RegisterView : ContentPage
 {
+    public bool HasError = false;
+    public string Error = "";
     internal static string RouteName = "RegisterView";
     public Validatable<string> EmailValidator { get; private set; }
     public Validatable<string> PasswordValidator { get; private set; }
@@ -41,6 +44,7 @@ public partial class RegisterView : ContentPage
             if(ALlFieldAreValid())
             {
                 ErrorLabel.IsVisible = false;
+                ErrorLabel.Text = "";
                 ViewModel.RegisterUser(new RegisterUserArgs(
                     NameValidator.Value,
                     FirstnameValidator.Value,
@@ -55,18 +59,30 @@ public partial class RegisterView : ContentPage
             else
             {
                 ErrorLabel.IsVisible = true;
+                ErrorLabel.Text = "One or more field(s) are not valid";
             }
         }
-        catch(Exception ex)
+        catch (ServiceException ex)
         {
-            Toast.Make(ex.Message).Show();
+            ErrorLabel.IsVisible = true;
+            ErrorLabel.Text = ex.Message;
+        }
+        catch (Exception ex)
+        {
+            Toast.Make(ex.Message, CommunityToolkit.Maui.Core.ToastDuration.Long).Show();
         }
     }
 
     private bool ALlFieldAreValid()
     {
-        return EmailValidator.Validate() && PasswordValidator.Validate() && NameValidator.Validate() && FirstnameValidator.Validate()
-            && PseudoValidator.Validate() && BioValidator.Validate() && BirthdateValidator.Validate();
+        bool validationsResult = MailInput.Validate();
+        validationsResult &= PasswordInput.Validate();
+        validationsResult &= LastnameInput.Validate();
+        validationsResult &= FirstnameInput.Validate();
+        validationsResult &= PseudoInput.Validate();
+        validationsResult &= BioInput.Validate();
+        validationsResult &= BirthdateInput.Validate();
+        return validationsResult;
     }
 
     private void InitializedValidationHandlers()
@@ -110,6 +126,7 @@ public partial class RegisterView : ContentPage
     private void InitializeValidator()
     {
         EmailValidator = Validator.Build<string>()
+            .WithRule(new IsNotNullOrEmptyRule<string>(), "Email is not valide")
             .WithRule(new EmailRule(), "Email is not valide");
         PasswordValidator = new Validatable<string>();
         PasswordValidator.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = "You must provide a password" });
@@ -131,6 +148,7 @@ public partial class RegisterView : ContentPage
         PseudoValidator.Validations.Add(new MinimumLengthRule(4) { ValidationMessage = "You must provide a pseudo that's at least 4 characters long." });
         PseudoValidator.Validations.Add(new MaximumLengthRule(20) { ValidationMessage = "You must provide a pseudo should'nt be more than 20 characters long." });
         BirthdateValidator = new Validatable<DateOnly>();
-        BirthdateValidator.Validations.Add(new UserIsAtLeast13YearsOldRule());
+        BirthdateValidator.Validations.Add(new IsNotNullOrEmptyRule<DateOnly> { ValidationMessage = "You must provide a birthdate" });
+        BirthdateValidator.Validations.Add(new UserIsAtLeast13YearsOldRule() { ValidationMessage = "You should be at least 13 years old" });
     }
 }

@@ -14,5 +14,6 @@ namespace Quiz.ForNative.Components.Form
         T PlaceholderContent { get; set; }
         InputValidationFunction ValidationFunction { get; set; }
         string InputName { get; set; }
+        bool Validate();
     }
 }

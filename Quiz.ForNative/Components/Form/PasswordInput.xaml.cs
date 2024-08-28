@@ -43,6 +43,17 @@ public partial class PasswordInput : ContentView, IFormInput<string>
         set => SetValue(InputNameProperty, value);
     }
 
+    public bool Validate()
+    {
+        string validationResult = ValidationFunction(InputName, Input.Value);
+        bool isEmpty = string.IsNullOrEmpty(validationResult);
+        if (!isEmpty)
+        {
+            Input.ErrorTxt = validationResult;
+        }
+        return isEmpty;
+    }
+
     public PasswordInput()
     {
         InitializeComponent();

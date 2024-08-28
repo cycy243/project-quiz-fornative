@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Quiz.ForNative.Components.Form;
 
 public partial class FormInput : ContentView
@@ -57,11 +59,16 @@ public partial class FormInput : ContentView
     }
     public string ErrorTxt
     {
-        get => GetValue(ErrorTxtProperty) as string;
-        set => SetValue(ErrorTxtProperty, value);
+        get => ErrorLabel != null ? ErrorLabel.Text : string.Empty;
+        set
+        {
+            ErrorLabel.Text = string.IsNullOrEmpty(value) ? string.Empty : value;
+            ErrorLabel.IsVisible = !string.IsNullOrEmpty(value);
+        }
     }
     public InputType TypeInput { get; set; }
     public string Value { get; set; }
+    private Label ErrorLabel;
     #endregion
 
     public FormInput()
@@ -101,6 +108,8 @@ public partial class FormInput : ContentView
                 break;
             case InputType.Date:
                 inputField = new DatePicker();
+                (inputField as DatePicker).Date = DateTime.Now;
+                Value = (inputField as DatePicker).Date.ToString("dd/MM/yyyy");
                 (inputField as DatePicker).DateSelected += (sender, args) =>
                 {
                     Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
@@ -109,7 +118,6 @@ public partial class FormInput : ContentView
                 {
                     Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
                 };
-                inputField.SetBinding(DatePicker.DateProperty, new Binding("Placeholder"));
                 (inputField as DatePicker).DateSelected += (sender, args) =>
                 {
                     if (ValidationFunction != null)
@@ -134,7 +142,7 @@ public partial class FormInput : ContentView
         inputField.BindingContext = this;
         inputField.WidthRequest = 250;
         FormInputContainter.Children.Add(inputField);
-        FormInputContainter.Children.Add(errorLabel);
+        FormInputContainter.Children.Add(ErrorLabel = errorLabel);
         ChangeVisualState();
     }
 
