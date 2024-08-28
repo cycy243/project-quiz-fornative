@@ -79,5 +79,18 @@ namespace Quiz.Validations.Tests
             // Assert
             is13YearsAgo.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void WhenDateIsTodayThenReturnFalse()
+        {
+            // Arrange
+            Validatable.Value = DateOnly.FromDateTime(DateTime.Now);
+
+            // Act
+            var is13YearsAgo = Validatable.Validate(); ;
+
+            // Assert
+            is13YearsAgo.Should().BeFalse();
+        }
     }
 }
