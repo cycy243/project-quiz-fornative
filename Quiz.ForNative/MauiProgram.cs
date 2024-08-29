@@ -11,6 +11,8 @@ using Quiz.ViewModels;
 using Quiz.ForNative.Views.Auth;
 using Quiz.ForNative.Services;
 using Quiz.ForNative.Repository.Http;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace Quiz.ForNative
 {
@@ -28,7 +30,9 @@ namespace Quiz.ForNative
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            SetUpService(builder.Services);
+            LoadConfiguration(builder);
+
+            SetUpService(builder.Services, builder.Configuration);
 
 #if DEBUG
             builder.Logging.AddDebug();
@@ -37,14 +41,31 @@ namespace Quiz.ForNative
             return builder.Build();
         }
 
-        private static void SetUpService(IServiceCollection services)
+        private static void LoadConfiguration(MauiAppBuilder builder)
+        {
+            var a = Assembly.GetExecutingAssembly();
+#if DEBUG
+            using var stream = a.GetManifestResourceStream("Quiz.ForNative.appsettings.Development.json");
+#else
+            using var stream = a.GetManifestResourceStream("Quiz.ForNative.appsettings.Local.json");
+#endif
+
+            var config = new ConfigurationBuilder()
+                        .AddJsonStream(stream)
+                        .Build();
+
+
+            builder.Configuration.AddConfiguration(config);
+        }
+
+        private static void SetUpService(IServiceCollection services, IConfiguration configuration)
         {
             services
                 .AddRepositories()
                 .AddMappers()
                 .AddServices()
                 .AddViewModels()
-                .AddHttpUtilities()
+                .AddHttpUtilities(configuration)
                 .AddPages();
         }
 
@@ -67,11 +88,11 @@ namespace Quiz.ForNative
             return services;
         }
 
-        private static IServiceCollection AddHttpUtilities(this IServiceCollection services)
+        private static IServiceCollection AddHttpUtilities(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHttpClient("QuizHttpClient", (httpClient) =>
                 {
-                    httpClient.BaseAddress = new Uri("http://192.168.4.37:3000");
+                    httpClient.BaseAddress = new Uri(configuration["ApiUrl"] ?? throw new Exception("You must define an api url"));
                 })
                 .AddHttpMessageHandler<ConflictHandler>()
                 .AddHttpMessageHandler<UnAuthorizedAccessHandler>()
