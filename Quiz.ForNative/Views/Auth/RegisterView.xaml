@@ -13,14 +13,17 @@
             Margin="0,20,0,20">
             <VerticalStackLayout>
                 <Label
-                Text="Sign up on our app!"
-                HorizontalTextAlignment="Center"/>
+                    Text="Sign up on our app!"
+                    HorizontalTextAlignment="Center"/>
                 <ScrollView>
                     <VerticalStackLayout
                         Spacing="15">
                         <Label
                             x:Name="ErrorLabel"
+                            TextColor="Red"
                             IsVisible="False"
+                            Margin="0,20,0,0"
+                            HorizontalTextAlignment="Center"
                             Text="One or more field(s) are not valid"/>
                         <FormComponents:MailInput 
                             x:Name="MailInput"
