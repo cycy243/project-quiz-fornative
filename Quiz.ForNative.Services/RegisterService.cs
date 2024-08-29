@@ -29,7 +29,7 @@ namespace Quiz.ForNative.Services
             }
             catch (RessourceAlreadyExistsException raee)
             {
-                throw new ServiceException("The user already exist in the database");
+                throw new ServiceException("A user with the given email or pseudo already exists");
             }
             catch(ValidationException ve)
             {
