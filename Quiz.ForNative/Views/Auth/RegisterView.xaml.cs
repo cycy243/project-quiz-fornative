@@ -37,7 +37,7 @@ public partial class RegisterView : ContentPage
         InitializedValidationHandlers();
     }
 
-    private void OnRegister_Clicked(object? sender, EventArgs e)
+    private async void OnRegister_Clicked(object? sender, EventArgs e)
     {
         try
         {
@@ -45,7 +45,7 @@ public partial class RegisterView : ContentPage
             {
                 ErrorLabel.IsVisible = false;
                 ErrorLabel.Text = "";
-                ViewModel.RegisterUser(new RegisterUserArgs(
+                await ViewModel.RegisterUser(new RegisterUserArgs(
                     NameValidator.Value,
                     FirstnameValidator.Value,
                     PseudoValidator.Value,
