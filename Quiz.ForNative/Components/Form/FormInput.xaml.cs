@@ -153,8 +153,11 @@ public partial class FormInput : ContentView
             if (ValidationFunction != null)
             {
                 var validationResult = this.ValidationFunction(InputName, Value);
-                target.Text = string.IsNullOrEmpty(validationResult) ? string.Empty : validationResult;
-                target.IsVisible = !string.IsNullOrEmpty(validationResult);
+                bool hasNoError = string.IsNullOrEmpty(validationResult);
+                target.Text = hasNoError ? string.Empty : validationResult;
+                target.IsVisible = !hasNoError;
+                source.BackgroundColor = hasNoError ? Colors.Transparent : Colors.PaleVioletRed;
+                target.TextColor = hasNoError ? Colors.Black : Colors.Red;
             }
         };
     }
