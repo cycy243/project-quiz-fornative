@@ -1,7 +1,5 @@
 ﻿using FluentAssertions;
 using Moq;
-using Moq.Protected;
-using Newtonsoft.Json.Linq;
 using Quiz.Dtos;
 using Quiz.ForNative.Repository.Interfaces;
 using System.Net;
@@ -12,7 +10,8 @@ namespace Quiz.ForNative.Repository.Tests
     [TestClass]
     public class AuthApiRepositoryTests
     {
-        public Mock<IQuizHttpClient> _mockedHttpClient;
+        public required Mock<IQuizHttpClient> _mockedHttpClient;
+        public required IAuthRepository<UserDto> _authRepository;
 
         [TestInitialize]
         public void SetUp()
@@ -25,6 +24,7 @@ namespace Quiz.ForNative.Repository.Tests
                     Content = JsonContent.Create(new UserDto("", "", "", "", "", "")),
                     StatusCode = HttpStatusCode.OK
                 });
+            _authRepository = new AuthApiRepository(_mockedHttpClient.Object);
         }
 
         [TestMethod]
@@ -40,10 +40,9 @@ namespace Quiz.ForNative.Repository.Tests
                 {
                     // Arrange
                     UserDto? dto = null;
-                    IAuthRepository<UserDto> authRepository = new AuthApiRepository(_mockedHttpClient.Object);
 
                     // Act
-                    Func<Task> action = async () => dto = await authRepository.RegisterUser(new UserDto("", "", "", "", "", "", "", "", ""), fileStream);
+                    Func<Task> action = async () => dto = await _authRepository.RegisterUser(new UserDto("", "", "", "", "", "", "", "", ""), fileStream);
 
                     // Assert
                     await action.Should().NotThrowAsync();
@@ -58,6 +57,27 @@ namespace Quiz.ForNative.Repository.Tests
                     File.Delete(tempFilePath);
                 }
             }
+        }
+
+        [TestMethod]
+        public async Task WhenResponseStatusIsOKThenReturnDto()
+        {
+            // Arrange
+            UserDto? dto = null;
+            _mockedHttpClient
+                .Setup(mhc => mhc.PostAsJsonAsync(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<CancellationToken>()))
+                .ReturnsAsync(new HttpResponseMessage()
+                {
+                    Content = JsonContent.Create(new UserDto("", "", "", "", "", "")),
+                    StatusCode = HttpStatusCode.OK
+                });
+
+            // Act
+            Func<Task> action = async () => dto = await _authRepository.GetUserByCredentialsAsync(new CredentialsArgs("login", "password"));
+
+            // Assert
+            await action.Should().NotThrowAsync();
+            dto.Should().NotBeNull();
         }
     }
 }
