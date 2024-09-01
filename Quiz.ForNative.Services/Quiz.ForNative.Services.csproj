@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Quiz.Dtos\Quiz.Dtos.csproj" />
     <ProjectReference Include="..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj" />
     <ProjectReference Include="..\Quiz.ForNative.Args\Quiz.ForNative.Args.csproj" />
+    <ProjectReference Include="..\Quiz.ForNative.Domain\Quiz.ForNative.Domain.csproj" />
     <ProjectReference Include="..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj" />
   </ItemGroup>
 

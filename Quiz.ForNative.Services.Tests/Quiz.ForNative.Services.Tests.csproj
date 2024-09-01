@@ -19,8 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Quiz.ForNative.Repository.Exceptions\Quiz.ForNative.Repository.Exceptions.csproj" />
-    <ProjectReference Include="..\Quiz.ForNative.Repository\Quiz.ForNative.Repository.csproj" />
+    <ProjectReference Include="..\Quiz.For.Native.Repository.Interfaces\Quiz.ForNative.Repository.Interfaces.csproj" />
+    <ProjectReference Include="..\Quiz.ForNative.Mappers\Quiz.ForNative.Mappers.csproj" />
+    <ProjectReference Include="..\Quiz.ForNative.Services\Quiz.ForNative.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
