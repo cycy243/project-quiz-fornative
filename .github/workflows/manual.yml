@@ -24,6 +24,6 @@ jobs:
               with: 
                 dotnet-version: 8.0.x
             - name: Restore dependencies
-              run: dotnet restore
+              run: dotnet restore ./Quiz.ForNative/Quiz.ForNative.sln
             - name: Build
               run: dotnet build ./Quiz.ForNative/Quiz.ForNative.sln --no-restore
