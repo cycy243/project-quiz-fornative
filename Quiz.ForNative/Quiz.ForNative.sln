@@ -41,9 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Tests.Utils"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Repository.Tests", "..\Quiz.ForNative.Repository.Tests\Quiz.ForNative.Repository.Tests.csproj", "{8D5827B7-BD8E-4637-80CD-2F483372AB74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Domain", "..\Quiz.ForNative.Domain\Quiz.ForNative.Domain.csproj", "{DB48B221-5974-41AD-AF9A-DA2574BC6774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Domain", "..\Quiz.ForNative.Domain\Quiz.ForNative.Domain.csproj", "{DB48B221-5974-41AD-AF9A-DA2574BC6774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Mappers", "..\Quiz.ForNative.Mappers\Quiz.ForNative.Mappers.csproj", "{A3695062-0B75-413A-A687-FE8BFBF1B90D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.ForNative.Mappers", "..\Quiz.ForNative.Mappers\Quiz.ForNative.Mappers.csproj", "{A3695062-0B75-413A-A687-FE8BFBF1B90D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.ForNative.Services.Tests", "..\Quiz.ForNative.Services.Tests\Quiz.ForNative.Services.Tests.csproj", "{BB991AF7-654F-4DAC-A2F1-B668775FD63D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -129,6 +131,10 @@ Global
 		{A3695062-0B75-413A-A687-FE8BFBF1B90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3695062-0B75-413A-A687-FE8BFBF1B90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3695062-0B75-413A-A687-FE8BFBF1B90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB991AF7-654F-4DAC-A2F1-B668775FD63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB991AF7-654F-4DAC-A2F1-B668775FD63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB991AF7-654F-4DAC-A2F1-B668775FD63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB991AF7-654F-4DAC-A2F1-B668775FD63D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +159,7 @@ Global
 		{8D5827B7-BD8E-4637-80CD-2F483372AB74} = {0C2B35B3-FA83-441A-8672-4A4183286D97}
 		{DB48B221-5974-41AD-AF9A-DA2574BC6774} = {32107103-9DD7-413E-A386-855187C4B270}
 		{A3695062-0B75-413A-A687-FE8BFBF1B90D} = {32107103-9DD7-413E-A386-855187C4B270}
+		{BB991AF7-654F-4DAC-A2F1-B668775FD63D} = {0C2B35B3-FA83-441A-8672-4A4183286D97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8333539B-C18F-4859-B984-7C444B6E0E8F}
