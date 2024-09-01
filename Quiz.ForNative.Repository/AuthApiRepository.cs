@@ -16,8 +16,6 @@ namespace Quiz.ForNative.Repository
 
         public async Task<UserDto> RegisterUser(UserDto user, FileStream fileStream)
         {
-            // TODO : Handle error 400 (maybe with a middleware)
-            // TODO : Create DTO to get api errors
             MultipartFormDataContent multipartFormContent = new MultipartFormDataContent
             {
                 { new StringContent(user.Bio), nameof(UserDto.Bio).ToLower() },
