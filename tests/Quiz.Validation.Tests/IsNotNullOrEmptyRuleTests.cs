@@ -2,15 +2,15 @@
 
 namespace Quiz.Validations.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class IsNotNullOrEmptyRuleTests
     {
-        [DataTestMethod()]
+        [TestMethod]
         [DynamicData(nameof(CheckTestData))]
-        public void CheckTest<T>(T? value, bool hasToPass, string message)
+        public void CheckTest(object value, bool hasToPass, string message)
         {
             // Arrange
-            IsNotNullOrEmptyRule<T> rule = new IsNotNullOrEmptyRule<T>();
+            IsNotNullOrEmptyRule<object> rule = new IsNotNullOrEmptyRule<object>();
 
             // Act
             var validationResult = rule.Check(value);
