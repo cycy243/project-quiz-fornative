@@ -26,6 +26,6 @@ jobs:
             - name: Install workload
               run: dotnet workload restore --project  ./Quiz.ForNative/Quiz.ForNative.csproj
             - name: Restore dependencies
-              run: dotnet restore ./Quiz.ForNative/Quiz.ForNative.sln
+              run: dotnet restore ./Quiz.ForNative/Quiz.ForNative.csproj
             - name: Build
               run: dotnet build ./Quiz.ForNative/Quiz.ForNative.sln --no-restore
