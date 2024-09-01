@@ -23,7 +23,6 @@ jobs:
               uses: actions/setup-dotnet@v4
               with: 
                 dotnet-version: 8.0.x
-                cache: true
             - name: Install workload
               run: dotnet workload restore --project  ./Quiz.ForNative/Quiz.ForNative.csproj
             - name: Restore dependencies
