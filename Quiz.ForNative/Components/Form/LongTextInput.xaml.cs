@@ -11,9 +11,7 @@ public partial class LongTextInput : ContentView, IFormInput<string>
         nameof(PlaceholderContent),
         typeof(string),
         typeof(LongTextInput),
-        default(string));
-    public static readonly BindableProperty ValidationRulesProperty = BindableProperty.Create(
-        nameof(ValidationRules),
+
         typeof(string),
         typeof(LongTextInput),
         default(string));
