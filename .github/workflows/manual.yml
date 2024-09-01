@@ -1,0 +1,26 @@
+# This is a basic workflow that is manually triggered
+
+name: Build and test application
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+    push:
+        branches:
+            - '**'
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    build:
+        name: Build and test application
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup dotnet 8.0.0
+              uses: actions/setup-dotnet@v4
+              with: 
+                dotnet-version: '8.0.0'
+            - name: Build
+              run: dotnet build Quiz.ForNative
