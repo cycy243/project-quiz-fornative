@@ -18,7 +18,7 @@ namespace Quiz.ForNative.Repository.Http
             _httpClient = httpClient;
         }
 
-        public async Task<HttpResponseMessage> PostAsJsonAsync<T>(string requestUri, T data, CancellationToken cancellationToken = default)
+        public async Task<HttpResponseMessage> PostAsJsonAsync(string requestUri, object data, CancellationToken cancellationToken = default)
         {
             try
             {

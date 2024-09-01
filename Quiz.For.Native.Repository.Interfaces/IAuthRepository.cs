@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Quiz.ForNative.Repository.Interfaces
 {
+    public record CredentialsArgs(string Login, string Password);
+
     public interface IAuthRepository<T>
     {
         /// <summary>
@@ -17,5 +19,6 @@ namespace Quiz.ForNative.Repository.Interfaces
         /// The registered user
         /// </returns>
         Task<T> RegisterUser(T user, FileStream fileStream);
+        Task<T?> GetUserByCredentialsAsync(CredentialsArgs args);
     }
 }
