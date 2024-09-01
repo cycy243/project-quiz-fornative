@@ -22,10 +22,12 @@ jobs:
             - name: Setup dotnet 8.0.0
               uses: actions/setup-dotnet@v4
               with: 
-                dotnet-version: 8.0.x
+                dotnet-version: 8.x
+                cache: true
             - name: Install workload
               run: dotnet workload restore --project  ./Quiz.ForNative/Quiz.ForNative.csproj
             - name: Restore dependencies
               run: dotnet restore ./Quiz.ForNative/Quiz.ForNative.csproj
             - name: Build
-              run: dotnet build ./Quiz.ForNative/Quiz.ForNative.sln --no-restore
+              run: dotnet build ./Quiz.ForNative/Quiz.ForNative.sln
+              
