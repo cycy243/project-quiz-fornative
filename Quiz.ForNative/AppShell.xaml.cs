@@ -10,6 +10,7 @@ namespace Quiz.ForNative
 
             // Register routes
             Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
+            Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
         }
     }
 }

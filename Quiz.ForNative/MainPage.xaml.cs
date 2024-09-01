@@ -9,8 +9,9 @@ namespace Quiz.ForNative
             InitializeComponent();
         }
 
-        private void OnLogin(object sender, EventArgs e)
+        private async void OnLogin(object sender, EventArgs e)
         {
+            await Shell.Current.GoToAsync(nameof(LoginView));
         }
 
         private async void OnRegister(object sender, EventArgs e)

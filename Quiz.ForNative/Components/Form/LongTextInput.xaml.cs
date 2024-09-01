@@ -9,7 +9,20 @@ public partial class LongTextInput : ContentView, IFormInput<string>
         default(string));
     public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
         nameof(PlaceholderContent),
-
+        typeof(string),
+        typeof(LongTextInput),
+        default(string));
+    public static readonly BindableProperty ValidationRulesProperty = BindableProperty.Create(
+        nameof(ValidationRules),
+        typeof(string),
+        typeof(LongTextInput),
+        default(string));
+    public static readonly BindableProperty ValidationFunctionProperty = BindableProperty.Create(
+        nameof(ValidationFunction),
+        typeof(InputValidationFunction),
+        typeof(LongTextInput));
+    public static readonly BindableProperty InputNameProperty = BindableProperty.Create(
+        nameof(InputName),
         typeof(string),
         typeof(LongTextInput),
         default(string));

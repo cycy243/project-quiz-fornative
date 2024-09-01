@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"     
+             xmlns:FormComponents="clr-namespace:Quiz.ForNative.Components.Form"
+             x:Class="Quiz.ForNative.Views.Auth.LoginView"
+             Title="Login">
+    <VerticalStackLayout>
+        <Frame
+            BackgroundColor="{StaticResource Primary}"
+            MaximumWidthRequest="550"
+            Padding="30"
+            VerticalOptions="Center"
+            Margin="0,20,0,20">
+            <VerticalStackLayout>
+                <Label
+                    Text="Sign up on our app!"
+                    HorizontalTextAlignment="Center"/>
+                <ScrollView>
+                    <VerticalStackLayout
+                        Spacing="15">
+                        <Label
+                            x:Name="ErrorLabel"
+                            TextColor="Red"
+                            IsVisible="False"
+                            Margin="0,20,0,0"
+                            HorizontalTextAlignment="Center"
+                            Text="One or more field(s) are not valid"/>
+                        <FormComponents:TextInput x:Name="LoginInput" LabelContent="Login" PlaceholderContent="john.doe@mail.com" />
+                        <FormComponents:PasswordInput x:Name="PasswordInput" LabelContent="Password" PlaceholderContent="Your password" />
+                        <Button Text="Sign In" x:Name="LoginBtn" Clicked="OnLogin_Clicked" />
+                    </VerticalStackLayout>
+                </ScrollView>
+            </VerticalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>
