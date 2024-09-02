@@ -1,4 +1,5 @@
-﻿using Quiz.ForNative.Views.Auth;
+﻿using Quiz.ForNative.Views;
+using Quiz.ForNative.Views.Auth;
 
 namespace Quiz.ForNative
 {
@@ -11,6 +12,7 @@ namespace Quiz.ForNative
             // Register routes
             Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
+            Routing.RegisterRoute(nameof(DashboardView), typeof(DashboardView));
         }
     }
 }
