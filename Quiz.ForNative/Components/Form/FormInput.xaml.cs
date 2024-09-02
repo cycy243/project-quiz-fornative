@@ -83,7 +83,7 @@ public partial class FormInput : ContentView
 
     private void InitChild()
     {
-        View inputField = null;
+        View? inputField = null;
         var errorLabel = new Label { IsVisible = false, WidthRequest = 250 };
         switch(TypeInput)
         {
@@ -91,7 +91,7 @@ public partial class FormInput : ContentView
                 inputField = new Editor();
                 inputField.Unfocused += (sender, args) =>
                 {
-                    Value = (sender as Editor).Text;
+                    Value = (sender as Editor)!.Text;
                 };
                 inputField.SetBinding(Editor.PlaceholderProperty, new Binding("Placeholder"));
                 AddValidationHandler(inputField, errorLabel);
@@ -100,7 +100,7 @@ public partial class FormInput : ContentView
                 inputField = new Entry();
                 inputField.Unfocused += (sender, args) =>
                 {
-                    Value = (sender as Entry).Text;
+                    Value = (sender as Entry)!.Text;
                 };
                 (inputField as Entry).IsPassword = true;
                 inputField.SetBinding(Editor.PlaceholderProperty, new Binding("Placeholder"));
@@ -108,17 +108,17 @@ public partial class FormInput : ContentView
                 break;
             case InputType.Date:
                 inputField = new DatePicker();
-                (inputField as DatePicker).Date = DateTime.Now;
-                Value = (inputField as DatePicker).Date.ToString("dd/MM/yyyy");
-                (inputField as DatePicker).DateSelected += (sender, args) =>
+                (inputField as DatePicker)!.Date = DateTime.Now;
+                Value = (inputField as DatePicker)!.Date.ToString("dd/MM/yyyy");
+                (inputField as DatePicker)!.DateSelected += (sender, args) =>
                 {
-                    Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
+                    Value = (sender as DatePicker)!.Date.ToString("dd/MM/yyyy");
                 };
                 inputField.Unfocused += (sender, args) =>
                 {
-                    Value = (sender as DatePicker).Date.ToString("dd/MM/yyyy");
+                    Value = (sender as DatePicker)!.Date.ToString("dd/MM/yyyy");
                 };
-                (inputField as DatePicker).DateSelected += (sender, args) =>
+                (inputField as DatePicker)!.DateSelected += (sender, args) =>
                 {
                     if (ValidationFunction != null)
                     {
@@ -133,7 +133,7 @@ public partial class FormInput : ContentView
                 inputField = new Entry();
                 inputField.Unfocused += (sender, args) =>
                 {
-                    Value = (sender as Entry).Text;
+                    Value = (sender as Entry)!.Text;
                 };
                 inputField.SetBinding(Entry.PlaceholderProperty, new Binding("Placeholder"));
                 AddValidationHandler(inputField, errorLabel);

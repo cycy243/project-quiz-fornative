@@ -6,17 +6,12 @@ using Quiz.ViewModels.Interface;
 
 namespace Quiz.ViewModels
 {
-    public class LoginViewModel : IConnectViewModel
+    public class LoginViewModel(IConnectService<User> connectService) : IConnectViewModel
     {
-        private IConnectService<User> _connectService;
+        private readonly IConnectService<User> _connectService = connectService;
 
-        public string Login { get; set; }
-        public string Password { get; set; }
-
-        public LoginViewModel(IConnectService<User> connectService)
-        {
-            _connectService = connectService;
-        }
+        public string Login { get; set; } = "";
+        public string Password { get; set; } = "";
 
         public async Task<bool> LogUserIn()
         {
@@ -29,7 +24,7 @@ namespace Quiz.ViewModels
             {
                 throw new ViewModelException(se.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new ViewModelException($"Unexpected error");
             }

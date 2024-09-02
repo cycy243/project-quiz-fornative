@@ -53,7 +53,7 @@ namespace Quiz.ForNative
 #endif
 
             var config = new ConfigurationBuilder()
-                        .AddJsonStream(stream)
+                        .AddJsonStream(stream ?? throw new Exception("No appsettings found"))
                         .Build();
 
 

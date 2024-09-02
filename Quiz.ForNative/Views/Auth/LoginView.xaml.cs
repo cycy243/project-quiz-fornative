@@ -9,7 +9,7 @@ namespace Quiz.ForNative.Views.Auth;
 
 public partial class LoginView : ContentPage
 {
-    private IConnectViewModel _viewModel;
+    private readonly IConnectViewModel _viewModel;
 
     private Validatable<string> PasswordValidator;
     private Validatable<string> LoginValidator;
@@ -64,15 +64,15 @@ public partial class LoginView : ContentPage
         PasswordInput.ValidationFunction += (inputName, value) => ValidateInput((value as string)!, PasswordValidator);
     }
 
-    private bool FileExtensionIsValid(string filePath)
+    private static bool FileExtensionIsValid(string filePath)
     {
         return filePath.Contains(".jpg") || filePath.Contains(".jpeg") || filePath.Contains(".png");
     }
 
-    private string ValidateInput<S>(S input, Validatable<S> validator)
+    private static string ValidateInput<S>(S input, Validatable<S> validator)
     {
-        validator.Value = input == null ? default : input;
-        var errors = validator.Validate();
+        validator.Value = (input == null ? default : input)!;
+        validator.Validate();
         return validator.Error;
     }
 

@@ -29,7 +29,7 @@ public partial class BaseInput : Microsoft.Maui.Controls.ContentView
     }
 
     // Event handler for when the Label is tapped
-    private async void OnLabelTapped(object sender, EventArgs e)
+    private void OnLabelTapped(object sender, EventArgs e)
     {
         // Get the first child in the ContentPresenter that is focusable
         var containerContent = FindVisualElement<Microsoft.Maui.Controls.ContentPresenter>(this);
@@ -40,7 +40,7 @@ public partial class BaseInput : Microsoft.Maui.Controls.ContentView
 #if ANDROID
         if (containerContent?.Content is Microsoft.Maui.Controls.DatePicker picker)
         {
-            (picker.Handler as ITimePickerHandler).PlatformView.PerformClick();
+            (picker.Handler as ITimePickerHandler)?.PlatformView.PerformClick();
         }
 #endif
     }
@@ -57,7 +57,7 @@ public partial class BaseInput : Microsoft.Maui.Controls.ContentView
         {
             foreach (var child in visualTreeElement.GetVisualChildren())
             {
-                var result = FindVisualElement<T>(child as Element);
+                var result = FindVisualElement<T>((child as Element)!);
                 if (result != null)
                 {
                     return result;

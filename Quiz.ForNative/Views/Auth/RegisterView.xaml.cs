@@ -69,7 +69,7 @@ public partial class RegisterView : ContentPage
         }
         catch (Exception ex)
         {
-            Toast.Make(ex.Message, CommunityToolkit.Maui.Core.ToastDuration.Long).Show();
+            await Toast.Make(ex.Message, CommunityToolkit.Maui.Core.ToastDuration.Long).Show();
         }
     }
 
@@ -100,8 +100,7 @@ public partial class RegisterView : ContentPage
         };
         AvatarInput.ValidationFunction += (inputName, value) =>
         {
-            string castedValue = value as string;
-            if (castedValue != null && FileExtensionIsValid(castedValue))
+            if (value is string castedValue && FileExtensionIsValid(castedValue))
             {
 
                 AvatarPath = castedValue;
@@ -111,15 +110,15 @@ public partial class RegisterView : ContentPage
         };
     }
 
-    private bool FileExtensionIsValid(string filePath)
+    private static bool FileExtensionIsValid(string filePath)
     {
         return filePath.Contains(".jpg") || filePath.Contains(".jpeg") || filePath.Contains(".png");
     }
 
-    private string ValidateInput<S>(S input, Validatable<S> validator)
+    private static string ValidateInput<S>(S input, Validatable<S> validator)
     {
-        validator.Value = input == null ? default : input;
-        var errors = validator.Validate();
+        validator.Value = (input == null ? default : input)!;
+        validator.Validate();
         return validator.Error;
     }
 

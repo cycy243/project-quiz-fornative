@@ -87,7 +87,7 @@ public partial class PictureInput : ContentView, IFormInput<string>
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             await Snackbar.Make("An error occured").Show();
         }
