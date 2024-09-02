@@ -13,6 +13,8 @@ using Quiz.ForNative.Services;
 using Quiz.ForNative.Repository.Http;
 using System.Reflection;
 using Microsoft.Extensions.Configuration;
+using Quiz.ForNative.Services.Interface.Auth;
+using Quiz.ForNative.Domain;
 
 namespace Quiz.ForNative
 {
@@ -72,7 +74,8 @@ namespace Quiz.ForNative
         private static IServiceCollection AddPages(this IServiceCollection services)
         {
             services.AddSingleton<MainPage>()
-                .AddSingleton<RegisterView>();
+                .AddSingleton<RegisterView>()
+                .AddSingleton<LoginView>();
             return services;
         }
 
@@ -84,7 +87,8 @@ namespace Quiz.ForNative
 
         private static IServiceCollection AddViewModels(this IServiceCollection services)
         {
-            services.AddScoped<IRegisterViewModel, RegisterViewModel>();
+            services.AddScoped<IRegisterViewModel, RegisterViewModel>()
+                .AddScoped<IConnectViewModel, LoginViewModel>();
             return services;
         }
 
@@ -100,22 +104,23 @@ namespace Quiz.ForNative
             services.AddTransient<ConflictHandler>()
                 .AddTransient<UnAuthorizedAccessHandler>()
                 .AddTransient<BadRequestHandler>();
+            services.AddTransient<IQuizHttpClient>(sp => {
+                HttpClient httpClient = sp.GetRequiredService<IHttpClientFactory>().CreateClient("QuizHttpClient");
+                return new QuizHttpClient(httpClient);
+            });
             return services;
         }
 
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddSingleton<Services.Interface.RegisterService<RegisterDto>, RegisterService>();
+            services.AddSingleton<Services.Interface.RegisterService<RegisterDto>, RegisterService>()
+                .AddSingleton<IConnectService<User>, ConnectService>();
             return services;
         }
 
         private static IServiceCollection AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<IAuthRepository<UserDto>>(pr =>
-            {
-                HttpClient httpClient = pr.GetRequiredService<IHttpClientFactory>().CreateClient("QuizHttpClient");
-                return new AuthApiRepository(new QuizHttpClient(httpClient));
-            });
+            services.AddTransient<IAuthRepository<UserDto>, AuthApiRepository>();
             return services;
         }
     }
