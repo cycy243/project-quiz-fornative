@@ -2,17 +2,23 @@ using Plugin.ValidationRules.Rules;
 using Plugin.ValidationRules;
 using Quiz.Validations;
 using MinimumLengthRule = Quiz.Validations.MinimumLengthRule;
+using Quiz.ViewModels.Interface;
+using Quiz.ViewModels.Exceptions;
 
 namespace Quiz.ForNative.Views.Auth;
 
 public partial class LoginView : ContentPage
 {
+    private IConnectViewModel _viewModel;
+
     private Validatable<string> PasswordValidator;
     private Validatable<string> LoginValidator;
 
-    public LoginView()
+    public LoginView(IConnectViewModel viewModel)
     {
         InitializeComponent();
+
+        _viewModel = viewModel;
 
         InitializeValidator();
         InitializedValidationHandlers();
@@ -23,6 +29,20 @@ public partial class LoginView : ContentPage
         if (ALlFieldAreValid())
         {
             ErrorLabel.IsVisible = false;
+            try
+            {
+                _viewModel.Login = LoginValidator.Value;
+                _viewModel.Password = PasswordValidator.Value;
+                bool isConnected = await _viewModel.LogUserIn();
+                if (isConnected)
+                {
+                    await Shell.Current.GoToAsync(nameof(DashboardView));
+                }
+            }
+            catch(ViewModelException vme)
+            {
+                ErrorLabel.Text = vme.Message;
+            }
         }
         else
         {
